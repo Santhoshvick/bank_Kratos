@@ -1,0 +1,140 @@
+syntax = "proto3";
+
+package helloworld.v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "payment-service/api/helloworld/v1;v1";
+option java_multiple_files = true;
+option java_package = "dev.kratos.api.helloworld.v1";
+option java_outer_classname = "HelloworldProtoV1";
+
+service payment{
+  rpc CreatePayment(createRequest) returns (createResponse){
+    option (google.api.http)={
+      post:"v1/create"
+      body:"*"
+    };
+  };
+
+  rpc UpdatePayment(updateRequest) returns (updateResponse){
+    option (google.api.http)={
+      put:"v1/update"
+      body:"*"
+    };
+  };
+
+  rpc DeletePayment(deleteRequest) returns (deleteResponse){
+    option (google.api.http)={
+      delete:"v1/delete/{paymentId}"
+      body:"*"
+    };
+  };
+
+  rpc FindPayment(findRequest) returns (findResponse){
+    option (google.api.http)={
+      get:"v1/find/{paymentId}"
+      body:"*"
+    };
+  };
+}
+
+message createRequest{
+  int64 paymentId=1;
+  int64 fromAccountId=2;
+  int64 toAccountId=3;
+  string paymentType=4;
+  string amount=5;
+  string currency=6;
+  string paymentMethod=7;
+  string referenceNumber=8;
+  string status=9;
+}
+
+message createResponse{
+  int64 paymentId=1;
+  int64 fromAccountId=2;
+  int64 toAccountId=3;
+  string paymentType=4;
+  string amount=5;
+  string currency=6;
+  string paymentMethod=7;
+  string referenceNumber=8;
+  string status=9;
+}
+
+
+message updateRequest{
+  int64 paymentId=1;
+  int64 fromAccountId=2;
+  int64 toAccountId=3;
+  string paymentType=4;
+  string amount=5;
+  string currency=6;
+  string paymentMethod=7;
+  string referenceNumber=8;
+  string status=9;
+}
+
+message  updateResponse{
+  int64 paymentId=1;
+  int64 fromAccountId=2;
+  int64 toAccountId=3;
+  string paymentType=4;
+  string amount=5;
+  string currency=6;
+  string paymentMethod=7;
+  string referenceNumber=8;
+  string status=9;
+}
+
+
+message deleteRequest{
+  int64 paymentId=1;
+  int64 fromAccountId=2;
+  int64 toAccountId=3;
+  string paymentType=4;
+  string amount=5;
+  string currency=6;
+  string paymentMethod=7;
+  string referenceNumber=8;
+  string status=9;
+}
+
+message deleteResponse{
+  int64 paymentId=1;
+  int64 fromAccountId=2;
+  int64 toAccountId=3;
+  string paymentType=4;
+  string amount=5;
+  string currency=6;
+  string paymentMethod=7;
+  string referenceNumber=8;
+  string status=9;
+}
+
+
+message findRequest{
+  int64 paymentId=1;
+  int64 fromAccountId=2;
+  int64 toAccountId=3;
+  string paymentType=4;
+  string amount=5;
+  string currency=6;
+  string paymentMethod=7;
+  string referenceNumber=8;
+  string status=9;
+}
+
+message findResponse{
+  int64 paymentId=1;
+  int64 fromAccountId=2;
+  int64 toAccountId=3;
+  string paymentType=4;
+  string amount=5;
+  string currency=6;
+  string paymentMethod=7;
+  string referenceNumber=8;
+  string status=9;
+}
+

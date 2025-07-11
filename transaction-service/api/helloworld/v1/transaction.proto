@@ -1,0 +1,147 @@
+syntax = "proto3";
+
+package helloworld.v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "transaction-service/api/helloworld/v1;v1";
+option java_multiple_files = true;
+option java_package = "dev.kratos.api.helloworld.v1";
+option java_outer_classname = "HelloworldProtoV1";
+
+// The greeting service definition.
+service Transaction{
+  rpc CreateTransaction(createRequest) returns (createResponse){
+    option (google.api.http)={
+      post:"v1/create",
+      body:"*"
+    };
+  };
+  rpc UpdateTransaction(updateRequest) returns (updateResponse){
+    option (google.api.http)={
+      put:"v1/update",
+      body:"*"
+    };
+  };
+
+  rpc DeleteTransaction(deleteRequest) returns (deleteResponse){
+    option (google.api.http)={
+      delete:"v1/delete/{transactionId}",
+      body:"*"
+    };
+  };
+
+  rpc FindTransaction(findRequest) returns (findReponse){
+    option (google.api.http)={
+      get:"v1/find/{transactionId}",
+      body:"*"
+    };
+  };
+}
+
+
+message createRequest{
+  int64 transactionId=1;
+  int64 accountId=2;
+  int64 relatedId=3;
+  string transactionType=4;
+  string amount=5;
+  string currency=6;
+  string status=7;
+  string description=8;
+  string referenceNumber=9;
+  string postingDate=10;
+}
+message createResponse{
+  int64 transactionId=1;
+  int64 accountId=2;
+  int64 relatedId=3;
+  string transactionType=4;
+  string amount=5;
+  string currency=6;
+  string status=7;
+  string description=8;
+  string referenceNumber=9;
+  string postingDate=10;
+}
+
+message updateRequest{
+  int64 transactionId=1;
+  int64 accountId=2;
+  int64 relatedId=3;
+  string transactionType=4;
+  string amount=5;
+  string currency=6;
+  string status=7;
+  string description=8;
+  string referenceNumber=9;
+  string postingDate=10;
+}
+
+message updateResponse{
+  int64 transactionId=1;
+  int64 accountId=2;
+  int64 relatedId=3;
+  string transactionType=4;
+  string amount=5;
+  string currency=6;
+  string status=7;
+  string description=8;
+  string referenceNumber=9;
+  string postingDate=10;
+}
+
+
+
+message deleteRequest{
+  int64 transactionId=1;
+  int64 accountId=2;
+  int64 relatedId=3;
+  string transactionType=4;
+  string amount=5;
+  string currency=6;
+  string status=7;
+  string description=8;
+  string referenceNumber=9;
+  string postingDate=10;
+}
+message deleteResponse{
+  int64 transactionId=1;
+  int64 accountId=2;
+  int64 relatedId=3;
+  string transactionType=4;
+  string amount=5;
+  string currency=6;
+  string status=7;
+  string description=8;
+  string referenceNumber=9;
+  string postingDate=10;
+}
+
+
+
+message findRequest{
+  int64 transactionId=1;
+  int64 accountId=2;
+  int64 relatedId=3;
+  string transactionType=4;
+  string amount=5;
+  string currency=6;
+  string status=7;
+  string description=8;
+  string referenceNumber=9;
+  string postingDate=10;
+}
+
+message findReponse{
+  int64 transactionId=1;
+  int64 accountId=2;
+  int64 relatedId=3;
+  string transactionType=4;
+  string amount=5;
+  string currency=6;
+  string status=7;
+  string description=8;
+  string referenceNumber=9;
+  string postingDate=10;
+}
