@@ -970,12 +970,12 @@ const file_api_helloworld_v1_payment_proto_rawDesc = "" +
 	"\bcurrency\x18\x06 \x01(\tR\bcurrency\x12$\n" +
 	"\rpaymentMethod\x18\a \x01(\tR\rpaymentMethod\x12(\n" +
 	"\x0freferenceNumber\x18\b \x01(\tR\x0freferenceNumber\x12\x16\n" +
-	"\x06status\x18\t \x01(\tR\x06status2\xa9\x03\n" +
-	"\apayment\x12b\n" +
-	"\rCreatePayment\x12\x1c.helloworld.v1.createRequest\x1a\x1d.helloworld.v1.createResponse\"\x14\x82\xd3\xe4\x93\x02\x0e:\x01*\"\tv1/create\x12b\n" +
-	"\rUpdatePayment\x12\x1c.helloworld.v1.updateRequest\x1a\x1d.helloworld.v1.updateResponse\"\x14\x82\xd3\xe4\x93\x02\x0e:\x01*\x1a\tv1/update\x12n\n" +
-	"\rDeletePayment\x12\x1c.helloworld.v1.deleteRequest\x1a\x1d.helloworld.v1.deleteResponse\" \x82\xd3\xe4\x93\x02\x1a:\x01**\x15v1/delete/{paymentId}\x12f\n" +
-	"\vFindPayment\x12\x1a.helloworld.v1.findRequest\x1a\x1b.helloworld.v1.findResponse\"\x1e\x82\xd3\xe4\x93\x02\x18:\x01*\x12\x13v1/find/{paymentId}BY\n" +
+	"\x06status\x18\t \x01(\tR\x06status2\xc9\x03\n" +
+	"\apayment\x12j\n" +
+	"\rCreatePayment\x12\x1c.helloworld.v1.createRequest\x1a\x1d.helloworld.v1.createResponse\"\x1c\x82\xd3\xe4\x93\x02\x16:\x01*\"\x11v1/payment/create\x12j\n" +
+	"\rUpdatePayment\x12\x1c.helloworld.v1.updateRequest\x1a\x1d.helloworld.v1.updateResponse\"\x1c\x82\xd3\xe4\x93\x02\x16:\x01*\x1a\x11v1/payment/update\x12v\n" +
+	"\rDeletePayment\x12\x1c.helloworld.v1.deleteRequest\x1a\x1d.helloworld.v1.deleteResponse\"(\x82\xd3\xe4\x93\x02\":\x01**\x1dv1/payment/delete/{paymentId}\x12n\n" +
+	"\vFindPayment\x12\x1a.helloworld.v1.findRequest\x1a\x1b.helloworld.v1.findResponse\"&\x82\xd3\xe4\x93\x02 :\x01*\x12\x1bv1/payment/find/{paymentId}BY\n" +
 	"\x1cdev.kratos.api.helloworld.v1B\x11HelloworldProtoV1P\x01Z$payment-service/api/helloworld/v1;v1b\x06proto3"
 
 var (

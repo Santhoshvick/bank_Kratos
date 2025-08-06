@@ -13,27 +13,27 @@ option java_outer_classname = "HelloworldProtoV1";
 service Transaction{
   rpc CreateTransaction(createRequest) returns (createResponse){
     option (google.api.http)={
-      post:"v1/create",
+      post:"v1/transaction/create",
       body:"*"
     };
   };
   rpc UpdateTransaction(updateRequest) returns (updateResponse){
     option (google.api.http)={
-      put:"v1/update",
+      put:"v1/transaction/update",
       body:"*"
     };
   };
 
   rpc DeleteTransaction(deleteRequest) returns (deleteResponse){
     option (google.api.http)={
-      delete:"v1/delete/{transactionId}",
+      delete:"v1/transaction/delete/{transactionId}",
       body:"*"
     };
   };
 
   rpc FindTransaction(findRequest) returns (findReponse){
     option (google.api.http)={
-      get:"v1/find/{transactionId}",
+      get:"v1/transaction/find/{transactionId}",
       body:"*"
     };
   };

@@ -12,28 +12,28 @@ option java_outer_classname = "HelloworldProtoV1";
 service payment{
   rpc CreatePayment(createRequest) returns (createResponse){
     option (google.api.http)={
-      post:"v1/create"
+      post:"v1/payment/create"
       body:"*"
     };
   };
 
   rpc UpdatePayment(updateRequest) returns (updateResponse){
     option (google.api.http)={
-      put:"v1/update"
+      put:"v1/payment/update"
       body:"*"
     };
   };
 
   rpc DeletePayment(deleteRequest) returns (deleteResponse){
     option (google.api.http)={
-      delete:"v1/delete/{paymentId}"
+      delete:"v1/payment/delete/{paymentId}"
       body:"*"
     };
   };
 
   rpc FindPayment(findRequest) returns (findResponse){
     option (google.api.http)={
-      get:"v1/find/{paymentId}"
+      get:"v1/payment/find/{paymentId}"
       body:"*"
     };
   };

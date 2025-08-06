@@ -1050,12 +1050,12 @@ const file_api_helloworld_v1_transaction_proto_rawDesc = "" +
 	"\vdescription\x18\b \x01(\tR\vdescription\x12(\n" +
 	"\x0freferenceNumber\x18\t \x01(\tR\x0freferenceNumber\x12 \n" +
 	"\vpostingDate\x18\n" +
-	" \x01(\tR\vpostingDate2\xc4\x03\n" +
-	"\vTransaction\x12f\n" +
-	"\x11CreateTransaction\x12\x1c.helloworld.v1.createRequest\x1a\x1d.helloworld.v1.createResponse\"\x14\x82\xd3\xe4\x93\x02\x0e:\x01*\"\tv1/create\x12f\n" +
-	"\x11UpdateTransaction\x12\x1c.helloworld.v1.updateRequest\x1a\x1d.helloworld.v1.updateResponse\"\x14\x82\xd3\xe4\x93\x02\x0e:\x01*\x1a\tv1/update\x12v\n" +
-	"\x11DeleteTransaction\x12\x1c.helloworld.v1.deleteRequest\x1a\x1d.helloworld.v1.deleteResponse\"$\x82\xd3\xe4\x93\x02\x1e:\x01**\x19v1/delete/{transactionId}\x12m\n" +
-	"\x0fFindTransaction\x12\x1a.helloworld.v1.findRequest\x1a\x1a.helloworld.v1.findReponse\"\"\x82\xd3\xe4\x93\x02\x1c:\x01*\x12\x17v1/find/{transactionId}B]\n" +
+	" \x01(\tR\vpostingDate2\xf5\x03\n" +
+	"\vTransaction\x12r\n" +
+	"\x11CreateTransaction\x12\x1c.helloworld.v1.createRequest\x1a\x1d.helloworld.v1.createResponse\" \x82\xd3\xe4\x93\x02\x1a:\x01*\"\x15v1/transaction/create\x12r\n" +
+	"\x11UpdateTransaction\x12\x1c.helloworld.v1.updateRequest\x1a\x1d.helloworld.v1.updateResponse\" \x82\xd3\xe4\x93\x02\x1a:\x01*\x1a\x15v1/transaction/update\x12\x82\x01\n" +
+	"\x11DeleteTransaction\x12\x1c.helloworld.v1.deleteRequest\x1a\x1d.helloworld.v1.deleteResponse\"0\x82\xd3\xe4\x93\x02*:\x01**%v1/transaction/delete/{transactionId}\x12y\n" +
+	"\x0fFindTransaction\x12\x1a.helloworld.v1.findRequest\x1a\x1a.helloworld.v1.findReponse\".\x82\xd3\xe4\x93\x02(:\x01*\x12#v1/transaction/find/{transactionId}B]\n" +
 	"\x1cdev.kratos.api.helloworld.v1B\x11HelloworldProtoV1P\x01Z(transaction-service/api/helloworld/v1;v1b\x06proto3"
 
 var (

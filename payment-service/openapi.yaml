@@ -6,7 +6,7 @@ info:
     title: Payment API
     version: 0.0.1
 paths:
-    v1/create:
+    v1/payment/create:
         post:
             tags:
                 - Payment
@@ -30,7 +30,7 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/Status'
-    v1/delete/{paymentId}:
+    v1/payment/delete/{paymentId}:
         delete:
             tags:
                 - Payment
@@ -60,7 +60,7 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/Status'
-    v1/find/{paymentId}:
+    v1/payment/find/{paymentId}:
         get:
             tags:
                 - Payment
@@ -90,7 +90,7 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/Status'
-    v1/update:
+    v1/payment/update:
         put:
             tags:
                 - Payment

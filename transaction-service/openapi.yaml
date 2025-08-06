@@ -7,7 +7,7 @@ info:
     description: The greeting service definition.
     version: 0.0.1
 paths:
-    v1/create:
+    v1/transaction/create:
         post:
             tags:
                 - Transaction
@@ -31,7 +31,7 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/Status'
-    v1/delete/{transactionId}:
+    v1/transaction/delete/{transactionId}:
         delete:
             tags:
                 - Transaction
@@ -61,7 +61,7 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/Status'
-    v1/find/{transactionId}:
+    v1/transaction/find/{transactionId}:
         get:
             tags:
                 - Transaction
@@ -91,7 +91,7 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/Status'
-    v1/update:
+    v1/transaction/update:
         put:
             tags:
                 - Transaction

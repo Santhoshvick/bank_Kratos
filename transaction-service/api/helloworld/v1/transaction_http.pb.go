@@ -33,10 +33,10 @@ type TransactionHTTPServer interface {
 
 func RegisterTransactionHTTPServer(s *http.Server, srv TransactionHTTPServer) {
 	r := s.Route("/")
-	r.POST("v1/create", _Transaction_CreateTransaction0_HTTP_Handler(srv))
-	r.PUT("v1/update", _Transaction_UpdateTransaction0_HTTP_Handler(srv))
-	r.DELETE("v1/delete/{transactionId}", _Transaction_DeleteTransaction0_HTTP_Handler(srv))
-	r.GET("v1/find/{transactionId}", _Transaction_FindTransaction0_HTTP_Handler(srv))
+	r.POST("v1/transaction/create", _Transaction_CreateTransaction0_HTTP_Handler(srv))
+	r.PUT("v1/transaction/update", _Transaction_UpdateTransaction0_HTTP_Handler(srv))
+	r.DELETE("v1/transaction/delete/{transactionId}", _Transaction_DeleteTransaction0_HTTP_Handler(srv))
+	r.GET("v1/transaction/find/{transactionId}", _Transaction_FindTransaction0_HTTP_Handler(srv))
 }
 
 func _Transaction_CreateTransaction0_HTTP_Handler(srv TransactionHTTPServer) func(ctx http.Context) error {
@@ -150,7 +150,7 @@ func NewTransactionHTTPClient(client *http.Client) TransactionHTTPClient {
 
 func (c *TransactionHTTPClientImpl) CreateTransaction(ctx context.Context, in *CreateRequest, opts ...http.CallOption) (*CreateResponse, error) {
 	var out CreateResponse
-	pattern := "v1/create"
+	pattern := "v1/transaction/create"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationTransactionCreateTransaction))
 	opts = append(opts, http.PathTemplate(pattern))
@@ -163,7 +163,7 @@ func (c *TransactionHTTPClientImpl) CreateTransaction(ctx context.Context, in *C
 
 func (c *TransactionHTTPClientImpl) DeleteTransaction(ctx context.Context, in *DeleteRequest, opts ...http.CallOption) (*DeleteResponse, error) {
 	var out DeleteResponse
-	pattern := "v1/delete/{transactionId}"
+	pattern := "v1/transaction/delete/{transactionId}"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationTransactionDeleteTransaction))
 	opts = append(opts, http.PathTemplate(pattern))
@@ -176,7 +176,7 @@ func (c *TransactionHTTPClientImpl) DeleteTransaction(ctx context.Context, in *D
 
 func (c *TransactionHTTPClientImpl) FindTransaction(ctx context.Context, in *FindRequest, opts ...http.CallOption) (*FindReponse, error) {
 	var out FindReponse
-	pattern := "v1/find/{transactionId}"
+	pattern := "v1/transaction/find/{transactionId}"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationTransactionFindTransaction))
 	opts = append(opts, http.PathTemplate(pattern))
@@ -189,7 +189,7 @@ func (c *TransactionHTTPClientImpl) FindTransaction(ctx context.Context, in *Fin
 
 func (c *TransactionHTTPClientImpl) UpdateTransaction(ctx context.Context, in *UpdateRequest, opts ...http.CallOption) (*UpdateResponse, error) {
 	var out UpdateResponse
-	pattern := "v1/update"
+	pattern := "v1/transaction/update"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationTransactionUpdateTransaction))
 	opts = append(opts, http.PathTemplate(pattern))

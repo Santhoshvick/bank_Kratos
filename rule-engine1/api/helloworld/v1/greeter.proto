@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package helloworld.v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "rule-engine1/api/helloworld/v1;v1";
+option java_multiple_files = true;
+option java_package = "dev.kratos.api.helloworld.v1";
+option java_outer_classname = "HelloworldProtoV1";
+
+// The greeting service definition.
+service Greeter {
+  // Sends a greeting
+  
+  rpc RuleEngine (RuleRequest) returns (RuleResponse);
+   
+}
+
+message RuleRequest{
+  int64 customerId=1;
+  string description=2;
+  string availableBalance=3;
+}
+
+message RuleResponse{
+   int64 customerId=1;
+  string description=2;
+  string availableBalance=3;
+}

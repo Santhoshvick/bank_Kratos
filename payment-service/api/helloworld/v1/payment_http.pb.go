@@ -33,10 +33,10 @@ type PaymentHTTPServer interface {
 
 func RegisterPaymentHTTPServer(s *http.Server, srv PaymentHTTPServer) {
 	r := s.Route("/")
-	r.POST("v1/create", _Payment_CreatePayment0_HTTP_Handler(srv))
-	r.PUT("v1/update", _Payment_UpdatePayment0_HTTP_Handler(srv))
-	r.DELETE("v1/delete/{paymentId}", _Payment_DeletePayment0_HTTP_Handler(srv))
-	r.GET("v1/find/{paymentId}", _Payment_FindPayment0_HTTP_Handler(srv))
+	r.POST("v1/payment/create", _Payment_CreatePayment0_HTTP_Handler(srv))
+	r.PUT("v1/payment/update", _Payment_UpdatePayment0_HTTP_Handler(srv))
+	r.DELETE("v1/payment/delete/{paymentId}", _Payment_DeletePayment0_HTTP_Handler(srv))
+	r.GET("v1/payment/find/{paymentId}", _Payment_FindPayment0_HTTP_Handler(srv))
 }
 
 func _Payment_CreatePayment0_HTTP_Handler(srv PaymentHTTPServer) func(ctx http.Context) error {
@@ -150,7 +150,7 @@ func NewPaymentHTTPClient(client *http.Client) PaymentHTTPClient {
 
 func (c *PaymentHTTPClientImpl) CreatePayment(ctx context.Context, in *CreateRequest, opts ...http.CallOption) (*CreateResponse, error) {
 	var out CreateResponse
-	pattern := "v1/create"
+	pattern := "v1/payment/create"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationPaymentCreatePayment))
 	opts = append(opts, http.PathTemplate(pattern))
@@ -163,7 +163,7 @@ func (c *PaymentHTTPClientImpl) CreatePayment(ctx context.Context, in *CreateReq
 
 func (c *PaymentHTTPClientImpl) DeletePayment(ctx context.Context, in *DeleteRequest, opts ...http.CallOption) (*DeleteResponse, error) {
 	var out DeleteResponse
-	pattern := "v1/delete/{paymentId}"
+	pattern := "v1/payment/delete/{paymentId}"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationPaymentDeletePayment))
 	opts = append(opts, http.PathTemplate(pattern))
@@ -176,7 +176,7 @@ func (c *PaymentHTTPClientImpl) DeletePayment(ctx context.Context, in *DeleteReq
 
 func (c *PaymentHTTPClientImpl) FindPayment(ctx context.Context, in *FindRequest, opts ...http.CallOption) (*FindResponse, error) {
 	var out FindResponse
-	pattern := "v1/find/{paymentId}"
+	pattern := "v1/payment/find/{paymentId}"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationPaymentFindPayment))
 	opts = append(opts, http.PathTemplate(pattern))
@@ -189,7 +189,7 @@ func (c *PaymentHTTPClientImpl) FindPayment(ctx context.Context, in *FindRequest
 
 func (c *PaymentHTTPClientImpl) UpdatePayment(ctx context.Context, in *UpdateRequest, opts ...http.CallOption) (*UpdateResponse, error) {
 	var out UpdateResponse
-	pattern := "v1/update"
+	pattern := "v1/payment/update"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationPaymentUpdatePayment))
 	opts = append(opts, http.PathTemplate(pattern))
