@@ -16,7 +16,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/CreateRequest'
+                            $ref: '#/components/schemas/CreateRequestTransaction'
                 required: true
             responses:
                 "200":
@@ -24,7 +24,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/CreateResponse'
+                                $ref: '#/components/schemas/CreateResponseTransaction'
                 default:
                     description: Default error response
                     content:
@@ -46,7 +46,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/DeleteRequest'
+                            $ref: '#/components/schemas/DeleteRequestTransaction'
                 required: true
             responses:
                 "200":
@@ -54,7 +54,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/DeleteResponse'
+                                $ref: '#/components/schemas/DeleteResponseTransaction'
                 default:
                     description: Default error response
                     content:
@@ -76,7 +76,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/FindRequest'
+                            $ref: '#/components/schemas/FindRequestTransaction'
                 required: true
             responses:
                 "200":
@@ -84,7 +84,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/FindReponse'
+                                $ref: '#/components/schemas/FindReponseTransaction'
                 default:
                     description: Default error response
                     content:
@@ -100,7 +100,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/UpdateRequest'
+                            $ref: '#/components/schemas/UpdateRequestTransaction'
                 required: true
             responses:
                 "200":
@@ -108,7 +108,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/UpdateResponse'
+                                $ref: '#/components/schemas/UpdateResponseTransaction'
                 default:
                     description: Default error response
                     content:
@@ -117,7 +117,7 @@ paths:
                                 $ref: '#/components/schemas/Status'
 components:
     schemas:
-        CreateRequest:
+        CreateRequestTransaction:
             type: object
             properties:
                 transactionId:
@@ -140,7 +140,7 @@ components:
                     type: string
                 postingDate:
                     type: string
-        CreateResponse:
+        CreateResponseTransaction:
             type: object
             properties:
                 transactionId:
@@ -163,7 +163,9 @@ components:
                     type: string
                 postingDate:
                     type: string
-        DeleteRequest:
+                message:
+                    type: string
+        DeleteRequestTransaction:
             type: object
             properties:
                 transactionId:
@@ -186,7 +188,7 @@ components:
                     type: string
                 postingDate:
                     type: string
-        DeleteResponse:
+        DeleteResponseTransaction:
             type: object
             properties:
                 transactionId:
@@ -209,7 +211,9 @@ components:
                     type: string
                 postingDate:
                     type: string
-        FindReponse:
+                message:
+                    type: string
+        FindReponseTransaction:
             type: object
             properties:
                 transactionId:
@@ -232,7 +236,9 @@ components:
                     type: string
                 postingDate:
                     type: string
-        FindRequest:
+                message:
+                    type: string
+        FindRequestTransaction:
             type: object
             properties:
                 transactionId:
@@ -279,7 +285,7 @@ components:
                         $ref: '#/components/schemas/GoogleProtobufAny'
                     description: A list of messages that carry the error details.  There is a common set of message types for APIs to use.
             description: 'The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).'
-        UpdateRequest:
+        UpdateRequestTransaction:
             type: object
             properties:
                 transactionId:
@@ -302,7 +308,7 @@ components:
                     type: string
                 postingDate:
                     type: string
-        UpdateResponse:
+        UpdateResponseTransaction:
             type: object
             properties:
                 transactionId:
@@ -324,6 +330,8 @@ components:
                 referenceNumber:
                     type: string
                 postingDate:
+                    type: string
+                message:
                     type: string
 tags:
     - name: Transaction

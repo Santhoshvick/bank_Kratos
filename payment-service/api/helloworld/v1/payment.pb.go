@@ -33,6 +33,7 @@ type CreateRequest struct {
 	PaymentMethod   string                 `protobuf:"bytes,7,opt,name=paymentMethod,proto3" json:"paymentMethod,omitempty"`
 	ReferenceNumber string                 `protobuf:"bytes,8,opt,name=referenceNumber,proto3" json:"referenceNumber,omitempty"`
 	Status          string                 `protobuf:"bytes,9,opt,name=status,proto3" json:"status,omitempty"`
+	Fee             string                 `protobuf:"bytes,10,opt,name=fee,proto3" json:"fee,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -130,6 +131,13 @@ func (x *CreateRequest) GetStatus() string {
 	return ""
 }
 
+func (x *CreateRequest) GetFee() string {
+	if x != nil {
+		return x.Fee
+	}
+	return ""
+}
+
 type CreateResponse struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
 	PaymentId       int64                  `protobuf:"varint,1,opt,name=paymentId,proto3" json:"paymentId,omitempty"`
@@ -141,6 +149,8 @@ type CreateResponse struct {
 	PaymentMethod   string                 `protobuf:"bytes,7,opt,name=paymentMethod,proto3" json:"paymentMethod,omitempty"`
 	ReferenceNumber string                 `protobuf:"bytes,8,opt,name=referenceNumber,proto3" json:"referenceNumber,omitempty"`
 	Status          string                 `protobuf:"bytes,9,opt,name=status,proto3" json:"status,omitempty"`
+	Message         string                 `protobuf:"bytes,10,opt,name=message,proto3" json:"message,omitempty"`
+	Fee             string                 `protobuf:"bytes,11,opt,name=fee,proto3" json:"fee,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -234,6 +244,20 @@ func (x *CreateResponse) GetReferenceNumber() string {
 func (x *CreateResponse) GetStatus() string {
 	if x != nil {
 		return x.Status
+	}
+	return ""
+}
+
+func (x *CreateResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *CreateResponse) GetFee() string {
+	if x != nil {
+		return x.Fee
 	}
 	return ""
 }
@@ -357,6 +381,7 @@ type UpdateResponse struct {
 	PaymentMethod   string                 `protobuf:"bytes,7,opt,name=paymentMethod,proto3" json:"paymentMethod,omitempty"`
 	ReferenceNumber string                 `protobuf:"bytes,8,opt,name=referenceNumber,proto3" json:"referenceNumber,omitempty"`
 	Status          string                 `protobuf:"bytes,9,opt,name=status,proto3" json:"status,omitempty"`
+	Message         string                 `protobuf:"bytes,10,opt,name=message,proto3" json:"message,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -454,19 +479,19 @@ func (x *UpdateResponse) GetStatus() string {
 	return ""
 }
 
+func (x *UpdateResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
 type DeleteRequest struct {
-	state           protoimpl.MessageState `protogen:"open.v1"`
-	PaymentId       int64                  `protobuf:"varint,1,opt,name=paymentId,proto3" json:"paymentId,omitempty"`
-	FromAccountId   int64                  `protobuf:"varint,2,opt,name=fromAccountId,proto3" json:"fromAccountId,omitempty"`
-	ToAccountId     int64                  `protobuf:"varint,3,opt,name=toAccountId,proto3" json:"toAccountId,omitempty"`
-	PaymentType     string                 `protobuf:"bytes,4,opt,name=paymentType,proto3" json:"paymentType,omitempty"`
-	Amount          string                 `protobuf:"bytes,5,opt,name=amount,proto3" json:"amount,omitempty"`
-	Currency        string                 `protobuf:"bytes,6,opt,name=currency,proto3" json:"currency,omitempty"`
-	PaymentMethod   string                 `protobuf:"bytes,7,opt,name=paymentMethod,proto3" json:"paymentMethod,omitempty"`
-	ReferenceNumber string                 `protobuf:"bytes,8,opt,name=referenceNumber,proto3" json:"referenceNumber,omitempty"`
-	Status          string                 `protobuf:"bytes,9,opt,name=status,proto3" json:"status,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PaymentId     int64                  `protobuf:"varint,1,opt,name=paymentId,proto3" json:"paymentId,omitempty"`
+	Currency      string                 `protobuf:"bytes,2,opt,name=currency,proto3" json:"currency,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *DeleteRequest) Reset() {
@@ -506,58 +531,9 @@ func (x *DeleteRequest) GetPaymentId() int64 {
 	return 0
 }
 
-func (x *DeleteRequest) GetFromAccountId() int64 {
-	if x != nil {
-		return x.FromAccountId
-	}
-	return 0
-}
-
-func (x *DeleteRequest) GetToAccountId() int64 {
-	if x != nil {
-		return x.ToAccountId
-	}
-	return 0
-}
-
-func (x *DeleteRequest) GetPaymentType() string {
-	if x != nil {
-		return x.PaymentType
-	}
-	return ""
-}
-
-func (x *DeleteRequest) GetAmount() string {
-	if x != nil {
-		return x.Amount
-	}
-	return ""
-}
-
 func (x *DeleteRequest) GetCurrency() string {
 	if x != nil {
 		return x.Currency
-	}
-	return ""
-}
-
-func (x *DeleteRequest) GetPaymentMethod() string {
-	if x != nil {
-		return x.PaymentMethod
-	}
-	return ""
-}
-
-func (x *DeleteRequest) GetReferenceNumber() string {
-	if x != nil {
-		return x.ReferenceNumber
-	}
-	return ""
-}
-
-func (x *DeleteRequest) GetStatus() string {
-	if x != nil {
-		return x.Status
 	}
 	return ""
 }
@@ -573,6 +549,7 @@ type DeleteResponse struct {
 	PaymentMethod   string                 `protobuf:"bytes,7,opt,name=paymentMethod,proto3" json:"paymentMethod,omitempty"`
 	ReferenceNumber string                 `protobuf:"bytes,8,opt,name=referenceNumber,proto3" json:"referenceNumber,omitempty"`
 	Status          string                 `protobuf:"bytes,9,opt,name=status,proto3" json:"status,omitempty"`
+	Message         string                 `protobuf:"bytes,10,opt,name=message,proto3" json:"message,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -666,6 +643,13 @@ func (x *DeleteResponse) GetReferenceNumber() string {
 func (x *DeleteResponse) GetStatus() string {
 	if x != nil {
 		return x.Status
+	}
+	return ""
+}
+
+func (x *DeleteResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
 	}
 	return ""
 }
@@ -789,6 +773,7 @@ type FindResponse struct {
 	PaymentMethod   string                 `protobuf:"bytes,7,opt,name=paymentMethod,proto3" json:"paymentMethod,omitempty"`
 	ReferenceNumber string                 `protobuf:"bytes,8,opt,name=referenceNumber,proto3" json:"referenceNumber,omitempty"`
 	Status          string                 `protobuf:"bytes,9,opt,name=status,proto3" json:"status,omitempty"`
+	Message         string                 `protobuf:"bytes,10,opt,name=message,proto3" json:"message,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -886,11 +871,18 @@ func (x *FindResponse) GetStatus() string {
 	return ""
 }
 
+func (x *FindResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
 var File_api_helloworld_v1_payment_proto protoreflect.FileDescriptor
 
 const file_api_helloworld_v1_payment_proto_rawDesc = "" +
 	"\n" +
-	"\x1fapi/helloworld/v1/payment.proto\x12\rhelloworld.v1\x1a\x1cgoogle/api/annotations.proto\"\xb3\x02\n" +
+	"\x1fapi/helloworld/v1/payment.proto\x12\x0ehelloworld3.v1\x1a\x1cgoogle/api/annotations.proto\"\xc5\x02\n" +
 	"\rcreateRequest\x12\x1c\n" +
 	"\tpaymentId\x18\x01 \x01(\x03R\tpaymentId\x12$\n" +
 	"\rfromAccountId\x18\x02 \x01(\x03R\rfromAccountId\x12 \n" +
@@ -900,7 +892,9 @@ const file_api_helloworld_v1_payment_proto_rawDesc = "" +
 	"\bcurrency\x18\x06 \x01(\tR\bcurrency\x12$\n" +
 	"\rpaymentMethod\x18\a \x01(\tR\rpaymentMethod\x12(\n" +
 	"\x0freferenceNumber\x18\b \x01(\tR\x0freferenceNumber\x12\x16\n" +
-	"\x06status\x18\t \x01(\tR\x06status\"\xb4\x02\n" +
+	"\x06status\x18\t \x01(\tR\x06status\x12\x10\n" +
+	"\x03fee\x18\n" +
+	" \x01(\tR\x03fee\"\xe0\x02\n" +
 	"\x0ecreateResponse\x12\x1c\n" +
 	"\tpaymentId\x18\x01 \x01(\x03R\tpaymentId\x12$\n" +
 	"\rfromAccountId\x18\x02 \x01(\x03R\rfromAccountId\x12 \n" +
@@ -910,7 +904,10 @@ const file_api_helloworld_v1_payment_proto_rawDesc = "" +
 	"\bcurrency\x18\x06 \x01(\tR\bcurrency\x12$\n" +
 	"\rpaymentMethod\x18\a \x01(\tR\rpaymentMethod\x12(\n" +
 	"\x0freferenceNumber\x18\b \x01(\tR\x0freferenceNumber\x12\x16\n" +
-	"\x06status\x18\t \x01(\tR\x06status\"\xb3\x02\n" +
+	"\x06status\x18\t \x01(\tR\x06status\x12\x18\n" +
+	"\amessage\x18\n" +
+	" \x01(\tR\amessage\x12\x10\n" +
+	"\x03fee\x18\v \x01(\tR\x03fee\"\xb3\x02\n" +
 	"\rupdateRequest\x12\x1c\n" +
 	"\tpaymentId\x18\x01 \x01(\x03R\tpaymentId\x12$\n" +
 	"\rfromAccountId\x18\x02 \x01(\x03R\rfromAccountId\x12 \n" +
@@ -920,7 +917,7 @@ const file_api_helloworld_v1_payment_proto_rawDesc = "" +
 	"\bcurrency\x18\x06 \x01(\tR\bcurrency\x12$\n" +
 	"\rpaymentMethod\x18\a \x01(\tR\rpaymentMethod\x12(\n" +
 	"\x0freferenceNumber\x18\b \x01(\tR\x0freferenceNumber\x12\x16\n" +
-	"\x06status\x18\t \x01(\tR\x06status\"\xb4\x02\n" +
+	"\x06status\x18\t \x01(\tR\x06status\"\xce\x02\n" +
 	"\x0eupdateResponse\x12\x1c\n" +
 	"\tpaymentId\x18\x01 \x01(\x03R\tpaymentId\x12$\n" +
 	"\rfromAccountId\x18\x02 \x01(\x03R\rfromAccountId\x12 \n" +
@@ -930,17 +927,12 @@ const file_api_helloworld_v1_payment_proto_rawDesc = "" +
 	"\bcurrency\x18\x06 \x01(\tR\bcurrency\x12$\n" +
 	"\rpaymentMethod\x18\a \x01(\tR\rpaymentMethod\x12(\n" +
 	"\x0freferenceNumber\x18\b \x01(\tR\x0freferenceNumber\x12\x16\n" +
-	"\x06status\x18\t \x01(\tR\x06status\"\xb3\x02\n" +
+	"\x06status\x18\t \x01(\tR\x06status\x12\x18\n" +
+	"\amessage\x18\n" +
+	" \x01(\tR\amessage\"I\n" +
 	"\rdeleteRequest\x12\x1c\n" +
-	"\tpaymentId\x18\x01 \x01(\x03R\tpaymentId\x12$\n" +
-	"\rfromAccountId\x18\x02 \x01(\x03R\rfromAccountId\x12 \n" +
-	"\vtoAccountId\x18\x03 \x01(\x03R\vtoAccountId\x12 \n" +
-	"\vpaymentType\x18\x04 \x01(\tR\vpaymentType\x12\x16\n" +
-	"\x06amount\x18\x05 \x01(\tR\x06amount\x12\x1a\n" +
-	"\bcurrency\x18\x06 \x01(\tR\bcurrency\x12$\n" +
-	"\rpaymentMethod\x18\a \x01(\tR\rpaymentMethod\x12(\n" +
-	"\x0freferenceNumber\x18\b \x01(\tR\x0freferenceNumber\x12\x16\n" +
-	"\x06status\x18\t \x01(\tR\x06status\"\xb4\x02\n" +
+	"\tpaymentId\x18\x01 \x01(\x03R\tpaymentId\x12\x1a\n" +
+	"\bcurrency\x18\x02 \x01(\tR\bcurrency\"\xce\x02\n" +
 	"\x0edeleteResponse\x12\x1c\n" +
 	"\tpaymentId\x18\x01 \x01(\x03R\tpaymentId\x12$\n" +
 	"\rfromAccountId\x18\x02 \x01(\x03R\rfromAccountId\x12 \n" +
@@ -950,7 +942,9 @@ const file_api_helloworld_v1_payment_proto_rawDesc = "" +
 	"\bcurrency\x18\x06 \x01(\tR\bcurrency\x12$\n" +
 	"\rpaymentMethod\x18\a \x01(\tR\rpaymentMethod\x12(\n" +
 	"\x0freferenceNumber\x18\b \x01(\tR\x0freferenceNumber\x12\x16\n" +
-	"\x06status\x18\t \x01(\tR\x06status\"\xb1\x02\n" +
+	"\x06status\x18\t \x01(\tR\x06status\x12\x18\n" +
+	"\amessage\x18\n" +
+	" \x01(\tR\amessage\"\xb1\x02\n" +
 	"\vfindRequest\x12\x1c\n" +
 	"\tpaymentId\x18\x01 \x01(\x03R\tpaymentId\x12$\n" +
 	"\rfromAccountId\x18\x02 \x01(\x03R\rfromAccountId\x12 \n" +
@@ -960,7 +954,7 @@ const file_api_helloworld_v1_payment_proto_rawDesc = "" +
 	"\bcurrency\x18\x06 \x01(\tR\bcurrency\x12$\n" +
 	"\rpaymentMethod\x18\a \x01(\tR\rpaymentMethod\x12(\n" +
 	"\x0freferenceNumber\x18\b \x01(\tR\x0freferenceNumber\x12\x16\n" +
-	"\x06status\x18\t \x01(\tR\x06status\"\xb2\x02\n" +
+	"\x06status\x18\t \x01(\tR\x06status\"\xcc\x02\n" +
 	"\ffindResponse\x12\x1c\n" +
 	"\tpaymentId\x18\x01 \x01(\x03R\tpaymentId\x12$\n" +
 	"\rfromAccountId\x18\x02 \x01(\x03R\rfromAccountId\x12 \n" +
@@ -970,12 +964,14 @@ const file_api_helloworld_v1_payment_proto_rawDesc = "" +
 	"\bcurrency\x18\x06 \x01(\tR\bcurrency\x12$\n" +
 	"\rpaymentMethod\x18\a \x01(\tR\rpaymentMethod\x12(\n" +
 	"\x0freferenceNumber\x18\b \x01(\tR\x0freferenceNumber\x12\x16\n" +
-	"\x06status\x18\t \x01(\tR\x06status2\xc9\x03\n" +
-	"\apayment\x12j\n" +
-	"\rCreatePayment\x12\x1c.helloworld.v1.createRequest\x1a\x1d.helloworld.v1.createResponse\"\x1c\x82\xd3\xe4\x93\x02\x16:\x01*\"\x11v1/payment/create\x12j\n" +
-	"\rUpdatePayment\x12\x1c.helloworld.v1.updateRequest\x1a\x1d.helloworld.v1.updateResponse\"\x1c\x82\xd3\xe4\x93\x02\x16:\x01*\x1a\x11v1/payment/update\x12v\n" +
-	"\rDeletePayment\x12\x1c.helloworld.v1.deleteRequest\x1a\x1d.helloworld.v1.deleteResponse\"(\x82\xd3\xe4\x93\x02\":\x01**\x1dv1/payment/delete/{paymentId}\x12n\n" +
-	"\vFindPayment\x12\x1a.helloworld.v1.findRequest\x1a\x1b.helloworld.v1.findResponse\"&\x82\xd3\xe4\x93\x02 :\x01*\x12\x1bv1/payment/find/{paymentId}BY\n" +
+	"\x06status\x18\t \x01(\tR\x06status\x12\x18\n" +
+	"\amessage\x18\n" +
+	" \x01(\tR\amessage2\xd1\x03\n" +
+	"\apayment\x12l\n" +
+	"\rCreatePayment\x12\x1d.helloworld3.v1.createRequest\x1a\x1e.helloworld3.v1.createResponse\"\x1c\x82\xd3\xe4\x93\x02\x16:\x01*\"\x11v1/payment/create\x12l\n" +
+	"\rUpdatePayment\x12\x1d.helloworld3.v1.updateRequest\x1a\x1e.helloworld3.v1.updateResponse\"\x1c\x82\xd3\xe4\x93\x02\x16:\x01*\x1a\x11v1/payment/update\x12x\n" +
+	"\rDeletePayment\x12\x1d.helloworld3.v1.deleteRequest\x1a\x1e.helloworld3.v1.deleteResponse\"(\x82\xd3\xe4\x93\x02\":\x01**\x1dv1/payment/delete/{paymentId}\x12p\n" +
+	"\vFindPayment\x12\x1b.helloworld3.v1.findRequest\x1a\x1c.helloworld3.v1.findResponse\"&\x82\xd3\xe4\x93\x02 :\x01*\x12\x1bv1/payment/find/{paymentId}BY\n" +
 	"\x1cdev.kratos.api.helloworld.v1B\x11HelloworldProtoV1P\x01Z$payment-service/api/helloworld/v1;v1b\x06proto3"
 
 var (
@@ -992,24 +988,24 @@ func file_api_helloworld_v1_payment_proto_rawDescGZIP() []byte {
 
 var file_api_helloworld_v1_payment_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_api_helloworld_v1_payment_proto_goTypes = []any{
-	(*CreateRequest)(nil),  // 0: helloworld.v1.createRequest
-	(*CreateResponse)(nil), // 1: helloworld.v1.createResponse
-	(*UpdateRequest)(nil),  // 2: helloworld.v1.updateRequest
-	(*UpdateResponse)(nil), // 3: helloworld.v1.updateResponse
-	(*DeleteRequest)(nil),  // 4: helloworld.v1.deleteRequest
-	(*DeleteResponse)(nil), // 5: helloworld.v1.deleteResponse
-	(*FindRequest)(nil),    // 6: helloworld.v1.findRequest
-	(*FindResponse)(nil),   // 7: helloworld.v1.findResponse
+	(*CreateRequest)(nil),  // 0: helloworld3.v1.createRequest
+	(*CreateResponse)(nil), // 1: helloworld3.v1.createResponse
+	(*UpdateRequest)(nil),  // 2: helloworld3.v1.updateRequest
+	(*UpdateResponse)(nil), // 3: helloworld3.v1.updateResponse
+	(*DeleteRequest)(nil),  // 4: helloworld3.v1.deleteRequest
+	(*DeleteResponse)(nil), // 5: helloworld3.v1.deleteResponse
+	(*FindRequest)(nil),    // 6: helloworld3.v1.findRequest
+	(*FindResponse)(nil),   // 7: helloworld3.v1.findResponse
 }
 var file_api_helloworld_v1_payment_proto_depIdxs = []int32{
-	0, // 0: helloworld.v1.payment.CreatePayment:input_type -> helloworld.v1.createRequest
-	2, // 1: helloworld.v1.payment.UpdatePayment:input_type -> helloworld.v1.updateRequest
-	4, // 2: helloworld.v1.payment.DeletePayment:input_type -> helloworld.v1.deleteRequest
-	6, // 3: helloworld.v1.payment.FindPayment:input_type -> helloworld.v1.findRequest
-	1, // 4: helloworld.v1.payment.CreatePayment:output_type -> helloworld.v1.createResponse
-	3, // 5: helloworld.v1.payment.UpdatePayment:output_type -> helloworld.v1.updateResponse
-	5, // 6: helloworld.v1.payment.DeletePayment:output_type -> helloworld.v1.deleteResponse
-	7, // 7: helloworld.v1.payment.FindPayment:output_type -> helloworld.v1.findResponse
+	0, // 0: helloworld3.v1.payment.CreatePayment:input_type -> helloworld3.v1.createRequest
+	2, // 1: helloworld3.v1.payment.UpdatePayment:input_type -> helloworld3.v1.updateRequest
+	4, // 2: helloworld3.v1.payment.DeletePayment:input_type -> helloworld3.v1.deleteRequest
+	6, // 3: helloworld3.v1.payment.FindPayment:input_type -> helloworld3.v1.findRequest
+	1, // 4: helloworld3.v1.payment.CreatePayment:output_type -> helloworld3.v1.createResponse
+	3, // 5: helloworld3.v1.payment.UpdatePayment:output_type -> helloworld3.v1.updateResponse
+	5, // 6: helloworld3.v1.payment.DeletePayment:output_type -> helloworld3.v1.deleteResponse
+	7, // 7: helloworld3.v1.payment.FindPayment:output_type -> helloworld3.v1.findResponse
 	4, // [4:8] is the sub-list for method output_type
 	0, // [0:4] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name

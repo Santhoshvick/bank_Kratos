@@ -1,0 +1,94 @@
+syntax = "proto3";
+
+package helloworld.v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "user-service/api/helloworld/v1;v1";
+option java_multiple_files = true;
+option java_package = "dev.kratos.api.helloworld.v1";
+option java_outer_classname = "HelloworldProtoV1";
+
+// The greeting service definition.
+service User{
+  rpc CreateUser(createRequest) returns (createResponse){
+    option (google.api.http) ={
+      post:"v1/user/create";
+      body:"*";
+    };
+  };
+  rpc FindUser(findRequest) returns (findResponse){
+    option (google.api.http) ={
+      get:"v1/user/find/{email}";
+    };
+  };
+}
+
+message createRequest{
+  int64 userId=14;
+  string firstName=1;
+  string lastName=2;
+  string dateofBirth=3;
+  string nationality=4;
+  string email=5;
+  int64 phone=6;
+  string address1=7;
+  string address2=8;
+  string city=9;
+  string postalCode=10;
+  string country=11;
+  string userName=12;
+  string password=13;
+}
+
+message createResponse{
+  int64 userId=14;
+  string firstName=1;
+  string lastName=2;
+  string dateofBirth=3;
+  string nationality=4;
+  string email=5;
+  int64 phone=6;
+  string address1=7;
+  string address2=8;
+  string city=9;
+  string postalCode=10;
+  string country=11;
+  string userName=12;
+  string password=13;
+  string message=15;
+}
+
+message findRequest{
+  int64 userId=14;
+  string firstName=1;
+  string lastName=2;
+  string dateofBirth=3;
+  string nationality=4;
+  string email=5;
+  int64 phone=6;
+  string address1=7;
+  string address2=8;
+  string city=9;
+  string postalCode=10;
+  string country=11;
+  string userName=12;
+  string password=13;
+}
+message findResponse{
+  int64 userId=14;
+  string firstName=1;
+  string lastName=2;
+  string dateofBirth=3;
+  string nationality=4;
+  string email=5;
+  int64 phone=6;
+  string address1=7;
+  string address2=8;
+  string city=9;
+  string postalCode=10;
+  string country=11;
+  string userName=12;
+  string password=13;
+  string message=15;
+}

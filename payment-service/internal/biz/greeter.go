@@ -4,16 +4,11 @@ import (
 	"context"
 	"time"
 
-	v1 "payment-service/api/helloworld/v1"
-
-	"github.com/go-kratos/kratos/v2/errors"
+	
 	"github.com/go-kratos/kratos/v2/log"
 )
 
-var (
-	// ErrUserNotFound is user not found.
-	ErrUserNotFound = errors.NotFound(v1.ErrorReason_USER_NOT_FOUND.String(), "user not found")
-)
+
 
 // Greeter is a Greeter model.
 type Payment struct {
@@ -27,6 +22,7 @@ type Payment struct {
 	PaymentMethod string
 	ReferenceNumber string
 	ExternalReference string
+	Fee string
 	ScheduledAt time.Time
 	ProcessedAt time.Time
 	CreatedAt time.Time

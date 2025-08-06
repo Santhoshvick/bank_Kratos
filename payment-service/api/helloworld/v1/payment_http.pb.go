@@ -19,10 +19,10 @@ var _ = binding.EncodeURL
 
 const _ = http.SupportPackageIsVersion1
 
-const OperationPaymentCreatePayment = "/helloworld.v1.payment/CreatePayment"
-const OperationPaymentDeletePayment = "/helloworld.v1.payment/DeletePayment"
-const OperationPaymentFindPayment = "/helloworld.v1.payment/FindPayment"
-const OperationPaymentUpdatePayment = "/helloworld.v1.payment/UpdatePayment"
+const OperationPaymentCreatePayment = "/helloworld3.v1.payment/CreatePayment"
+const OperationPaymentDeletePayment = "/helloworld3.v1.payment/DeletePayment"
+const OperationPaymentFindPayment = "/helloworld3.v1.payment/FindPayment"
+const OperationPaymentUpdatePayment = "/helloworld3.v1.payment/UpdatePayment"
 
 type PaymentHTTPServer interface {
 	CreatePayment(context.Context, *CreateRequest) (*CreateResponse, error)

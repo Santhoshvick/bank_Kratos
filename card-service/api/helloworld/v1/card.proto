@@ -11,31 +11,30 @@ option java_outer_classname = "HelloworldProtoV1";
 
 
 service Greeter {
-      rpc CreateCard(createRequest) returns (createResponse){
+      rpc CreateCard(createCardRequest) returns (createCardResponse){
         option (google.api.http)={
           post:"/v1/create",
           body:"*"
         };
       };
 
-      rpc UpdateCard(updateRequest) returns (updateResponse){
+      rpc UpdateCard(updateCardRequest) returns (updateCardResponse){
         option (google.api.http)={
           put:"v1/update",
           body:"*"
         };
       };
 
-      rpc DeleteCard(deleteRequest) returns (deleteResponse){
+      rpc DeleteCard(deleteCardRequest) returns (deleteCardResponse){
         option (google.api.http)={
           delete:"v1/delete/{card_id}",
           body:"*"
         };
       };
 
-      rpc FindCard(findRequest) returns (findResponse){
+      rpc FindCard(findCardRequest) returns (findCardResponse){
         option (google.api.http)={
-          get:"v1/find/{card_id}",
-          body:"*"
+          get:"v1/find/{card_id}";
         };
       };
 }
@@ -45,7 +44,7 @@ service Greeter {
 
 
 
-message createRequest{
+message createCardRequest{
   int64 card_id=1;
   int64 account_number=2;
   string card_number=3;
@@ -56,7 +55,67 @@ message createRequest{
   string monthly_limit=8;
   string pin_attempt=9;
 }
-message createResponse{
+message createCardResponse{
+  int64 card_id=1;
+  int64 account_number=2;
+  string card_number=3;
+  string card_type=4;
+  string card_status=5;
+  string expiry_date=6;
+  string daily_limit=7;
+  string monthly_limit=8;
+  string pin_attempt=9;
+  string message=10;
+}
+
+
+message updateCardRequest{
+  int64 card_id=1;
+  int64 account_number=2;
+  string card_number=3;
+  string card_type=4;
+  string card_status=5;
+  string expiry_date=6;
+  string daily_limit=7;
+  string monthly_limit=8;
+  string pin_attempt=9;
+
+}
+
+message updateCardResponse{
+  int64 card_id=1;
+  int64 account_number=2;
+  string card_number=3;
+  string card_type=4;
+  string card_status=5;
+  string expiry_date=6;
+  string daily_limit=7;
+  string monthly_limit=8;
+  string pin_attempt=9;
+  string message=10;
+
+}
+
+
+message deleteCardRequest{
+  int64 card_id=1;
+  int64 account_number=2;
+}
+
+message deleteCardResponse{
+  int64 card_id=1;
+  int64 account_number=2;
+  string card_number=3;
+  string card_type=4;
+  string card_status=5;
+  string expiry_date=6;
+  string daily_limit=7;
+  string monthly_limit=8;
+  string pin_attempt=9;
+  string message=10;
+}
+
+message findCardRequest{
   int64 card_id=1;
   int64 account_number=2;
   string card_number=3;
@@ -68,8 +127,7 @@ message createResponse{
   string pin_attempt=9;
 }
 
-
-message updateRequest{
+message findCardResponse{
   int64 card_id=1;
   int64 account_number=2;
   string card_number=3;
@@ -79,52 +137,6 @@ message updateRequest{
   string daily_limit=7;
   string monthly_limit=8;
   string pin_attempt=9;
-}
-
-message updateResponse{
-  int64 card_id=1;
-  int64 account_number=2;
-  string card_number=3;
-  string card_type=4;
-  string card_status=5;
-  string expiry_date=6;
-  string daily_limit=7;
-  string monthly_limit=8;
-  string pin_attempt=9;
-}
-
-
-message deleteRequest{
-  int64 card_id=1;
-  int64 account_number=2;
-}
-
-message deleteResponse{
-  int64 card_id=1;
-  int64 account_number=2;
-  string card_number=3;
-  string card_type=4;
-  string card_status=5;
-  string expiry_date=6;
-  string daily_limit=7;
-  string monthly_limit=8;
-  string pin_attempt=9;
-}
-
-message findRequest{
-  int64 card_id=1;
-  int64 account_number=2;
-}
-
-message findResponse{
-  int64 card_id=1;
-  int64 account_number=2;
-  string card_number=3;
-  string card_type=4;
-  string card_status=5;
-  string expiry_date=6;
-  string daily_limit=7;
-  string monthly_limit=8;
-  string pin_attempt=9;
+  string message=10;
 }
 

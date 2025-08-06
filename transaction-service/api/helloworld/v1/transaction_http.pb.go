@@ -25,10 +25,10 @@ const OperationTransactionFindTransaction = "/helloworld.v1.Transaction/FindTran
 const OperationTransactionUpdateTransaction = "/helloworld.v1.Transaction/UpdateTransaction"
 
 type TransactionHTTPServer interface {
-	CreateTransaction(context.Context, *CreateRequest) (*CreateResponse, error)
-	DeleteTransaction(context.Context, *DeleteRequest) (*DeleteResponse, error)
-	FindTransaction(context.Context, *FindRequest) (*FindReponse, error)
-	UpdateTransaction(context.Context, *UpdateRequest) (*UpdateResponse, error)
+	CreateTransaction(context.Context, *CreateRequestTransaction) (*CreateResponseTransaction, error)
+	DeleteTransaction(context.Context, *DeleteRequestTransaction) (*DeleteResponseTransaction, error)
+	FindTransaction(context.Context, *FindRequestTransaction) (*FindReponseTransaction, error)
+	UpdateTransaction(context.Context, *UpdateRequestTransaction) (*UpdateResponseTransaction, error)
 }
 
 func RegisterTransactionHTTPServer(s *http.Server, srv TransactionHTTPServer) {
@@ -41,7 +41,7 @@ func RegisterTransactionHTTPServer(s *http.Server, srv TransactionHTTPServer) {
 
 func _Transaction_CreateTransaction0_HTTP_Handler(srv TransactionHTTPServer) func(ctx http.Context) error {
 	return func(ctx http.Context) error {
-		var in CreateRequest
+		var in CreateRequestTransaction
 		if err := ctx.Bind(&in); err != nil {
 			return err
 		}
@@ -50,20 +50,20 @@ func _Transaction_CreateTransaction0_HTTP_Handler(srv TransactionHTTPServer) fun
 		}
 		http.SetOperation(ctx, OperationTransactionCreateTransaction)
 		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
-			return srv.CreateTransaction(ctx, req.(*CreateRequest))
+			return srv.CreateTransaction(ctx, req.(*CreateRequestTransaction))
 		})
 		out, err := h(ctx, &in)
 		if err != nil {
 			return err
 		}
-		reply := out.(*CreateResponse)
+		reply := out.(*CreateResponseTransaction)
 		return ctx.Result(200, reply)
 	}
 }
 
 func _Transaction_UpdateTransaction0_HTTP_Handler(srv TransactionHTTPServer) func(ctx http.Context) error {
 	return func(ctx http.Context) error {
-		var in UpdateRequest
+		var in UpdateRequestTransaction
 		if err := ctx.Bind(&in); err != nil {
 			return err
 		}
@@ -72,20 +72,20 @@ func _Transaction_UpdateTransaction0_HTTP_Handler(srv TransactionHTTPServer) fun
 		}
 		http.SetOperation(ctx, OperationTransactionUpdateTransaction)
 		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
-			return srv.UpdateTransaction(ctx, req.(*UpdateRequest))
+			return srv.UpdateTransaction(ctx, req.(*UpdateRequestTransaction))
 		})
 		out, err := h(ctx, &in)
 		if err != nil {
 			return err
 		}
-		reply := out.(*UpdateResponse)
+		reply := out.(*UpdateResponseTransaction)
 		return ctx.Result(200, reply)
 	}
 }
 
 func _Transaction_DeleteTransaction0_HTTP_Handler(srv TransactionHTTPServer) func(ctx http.Context) error {
 	return func(ctx http.Context) error {
-		var in DeleteRequest
+		var in DeleteRequestTransaction
 		if err := ctx.Bind(&in); err != nil {
 			return err
 		}
@@ -97,20 +97,20 @@ func _Transaction_DeleteTransaction0_HTTP_Handler(srv TransactionHTTPServer) fun
 		}
 		http.SetOperation(ctx, OperationTransactionDeleteTransaction)
 		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
-			return srv.DeleteTransaction(ctx, req.(*DeleteRequest))
+			return srv.DeleteTransaction(ctx, req.(*DeleteRequestTransaction))
 		})
 		out, err := h(ctx, &in)
 		if err != nil {
 			return err
 		}
-		reply := out.(*DeleteResponse)
+		reply := out.(*DeleteResponseTransaction)
 		return ctx.Result(200, reply)
 	}
 }
 
 func _Transaction_FindTransaction0_HTTP_Handler(srv TransactionHTTPServer) func(ctx http.Context) error {
 	return func(ctx http.Context) error {
-		var in FindRequest
+		var in FindRequestTransaction
 		if err := ctx.Bind(&in); err != nil {
 			return err
 		}
@@ -122,22 +122,22 @@ func _Transaction_FindTransaction0_HTTP_Handler(srv TransactionHTTPServer) func(
 		}
 		http.SetOperation(ctx, OperationTransactionFindTransaction)
 		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
-			return srv.FindTransaction(ctx, req.(*FindRequest))
+			return srv.FindTransaction(ctx, req.(*FindRequestTransaction))
 		})
 		out, err := h(ctx, &in)
 		if err != nil {
 			return err
 		}
-		reply := out.(*FindReponse)
+		reply := out.(*FindReponseTransaction)
 		return ctx.Result(200, reply)
 	}
 }
 
 type TransactionHTTPClient interface {
-	CreateTransaction(ctx context.Context, req *CreateRequest, opts ...http.CallOption) (rsp *CreateResponse, err error)
-	DeleteTransaction(ctx context.Context, req *DeleteRequest, opts ...http.CallOption) (rsp *DeleteResponse, err error)
-	FindTransaction(ctx context.Context, req *FindRequest, opts ...http.CallOption) (rsp *FindReponse, err error)
-	UpdateTransaction(ctx context.Context, req *UpdateRequest, opts ...http.CallOption) (rsp *UpdateResponse, err error)
+	CreateTransaction(ctx context.Context, req *CreateRequestTransaction, opts ...http.CallOption) (rsp *CreateResponseTransaction, err error)
+	DeleteTransaction(ctx context.Context, req *DeleteRequestTransaction, opts ...http.CallOption) (rsp *DeleteResponseTransaction, err error)
+	FindTransaction(ctx context.Context, req *FindRequestTransaction, opts ...http.CallOption) (rsp *FindReponseTransaction, err error)
+	UpdateTransaction(ctx context.Context, req *UpdateRequestTransaction, opts ...http.CallOption) (rsp *UpdateResponseTransaction, err error)
 }
 
 type TransactionHTTPClientImpl struct {
@@ -148,8 +148,8 @@ func NewTransactionHTTPClient(client *http.Client) TransactionHTTPClient {
 	return &TransactionHTTPClientImpl{client}
 }
 
-func (c *TransactionHTTPClientImpl) CreateTransaction(ctx context.Context, in *CreateRequest, opts ...http.CallOption) (*CreateResponse, error) {
-	var out CreateResponse
+func (c *TransactionHTTPClientImpl) CreateTransaction(ctx context.Context, in *CreateRequestTransaction, opts ...http.CallOption) (*CreateResponseTransaction, error) {
+	var out CreateResponseTransaction
 	pattern := "v1/transaction/create"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationTransactionCreateTransaction))
@@ -161,8 +161,8 @@ func (c *TransactionHTTPClientImpl) CreateTransaction(ctx context.Context, in *C
 	return &out, nil
 }
 
-func (c *TransactionHTTPClientImpl) DeleteTransaction(ctx context.Context, in *DeleteRequest, opts ...http.CallOption) (*DeleteResponse, error) {
-	var out DeleteResponse
+func (c *TransactionHTTPClientImpl) DeleteTransaction(ctx context.Context, in *DeleteRequestTransaction, opts ...http.CallOption) (*DeleteResponseTransaction, error) {
+	var out DeleteResponseTransaction
 	pattern := "v1/transaction/delete/{transactionId}"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationTransactionDeleteTransaction))
@@ -174,8 +174,8 @@ func (c *TransactionHTTPClientImpl) DeleteTransaction(ctx context.Context, in *D
 	return &out, nil
 }
 
-func (c *TransactionHTTPClientImpl) FindTransaction(ctx context.Context, in *FindRequest, opts ...http.CallOption) (*FindReponse, error) {
-	var out FindReponse
+func (c *TransactionHTTPClientImpl) FindTransaction(ctx context.Context, in *FindRequestTransaction, opts ...http.CallOption) (*FindReponseTransaction, error) {
+	var out FindReponseTransaction
 	pattern := "v1/transaction/find/{transactionId}"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationTransactionFindTransaction))
@@ -187,8 +187,8 @@ func (c *TransactionHTTPClientImpl) FindTransaction(ctx context.Context, in *Fin
 	return &out, nil
 }
 
-func (c *TransactionHTTPClientImpl) UpdateTransaction(ctx context.Context, in *UpdateRequest, opts ...http.CallOption) (*UpdateResponse, error) {
-	var out UpdateResponse
+func (c *TransactionHTTPClientImpl) UpdateTransaction(ctx context.Context, in *UpdateRequestTransaction, opts ...http.CallOption) (*UpdateResponseTransaction, error) {
+	var out UpdateResponseTransaction
 	pattern := "v1/transaction/update"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationTransactionUpdateTransaction))

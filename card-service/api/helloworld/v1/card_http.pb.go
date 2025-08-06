@@ -25,10 +25,10 @@ const OperationGreeterFindCard = "/helloworld.v1.Greeter/FindCard"
 const OperationGreeterUpdateCard = "/helloworld.v1.Greeter/UpdateCard"
 
 type GreeterHTTPServer interface {
-	CreateCard(context.Context, *CreateRequest) (*CreateResponse, error)
-	DeleteCard(context.Context, *DeleteRequest) (*DeleteResponse, error)
-	FindCard(context.Context, *FindRequest) (*FindResponse, error)
-	UpdateCard(context.Context, *UpdateRequest) (*UpdateResponse, error)
+	CreateCard(context.Context, *CreateCardRequest) (*CreateCardResponse, error)
+	DeleteCard(context.Context, *DeleteCardRequest) (*DeleteCardResponse, error)
+	FindCard(context.Context, *FindCardRequest) (*FindCardResponse, error)
+	UpdateCard(context.Context, *UpdateCardRequest) (*UpdateCardResponse, error)
 }
 
 func RegisterGreeterHTTPServer(s *http.Server, srv GreeterHTTPServer) {
@@ -41,7 +41,7 @@ func RegisterGreeterHTTPServer(s *http.Server, srv GreeterHTTPServer) {
 
 func _Greeter_CreateCard0_HTTP_Handler(srv GreeterHTTPServer) func(ctx http.Context) error {
 	return func(ctx http.Context) error {
-		var in CreateRequest
+		var in CreateCardRequest
 		if err := ctx.Bind(&in); err != nil {
 			return err
 		}
@@ -50,20 +50,20 @@ func _Greeter_CreateCard0_HTTP_Handler(srv GreeterHTTPServer) func(ctx http.Cont
 		}
 		http.SetOperation(ctx, OperationGreeterCreateCard)
 		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
-			return srv.CreateCard(ctx, req.(*CreateRequest))
+			return srv.CreateCard(ctx, req.(*CreateCardRequest))
 		})
 		out, err := h(ctx, &in)
 		if err != nil {
 			return err
 		}
-		reply := out.(*CreateResponse)
+		reply := out.(*CreateCardResponse)
 		return ctx.Result(200, reply)
 	}
 }
 
 func _Greeter_UpdateCard0_HTTP_Handler(srv GreeterHTTPServer) func(ctx http.Context) error {
 	return func(ctx http.Context) error {
-		var in UpdateRequest
+		var in UpdateCardRequest
 		if err := ctx.Bind(&in); err != nil {
 			return err
 		}
@@ -72,20 +72,20 @@ func _Greeter_UpdateCard0_HTTP_Handler(srv GreeterHTTPServer) func(ctx http.Cont
 		}
 		http.SetOperation(ctx, OperationGreeterUpdateCard)
 		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
-			return srv.UpdateCard(ctx, req.(*UpdateRequest))
+			return srv.UpdateCard(ctx, req.(*UpdateCardRequest))
 		})
 		out, err := h(ctx, &in)
 		if err != nil {
 			return err
 		}
-		reply := out.(*UpdateResponse)
+		reply := out.(*UpdateCardResponse)
 		return ctx.Result(200, reply)
 	}
 }
 
 func _Greeter_DeleteCard0_HTTP_Handler(srv GreeterHTTPServer) func(ctx http.Context) error {
 	return func(ctx http.Context) error {
-		var in DeleteRequest
+		var in DeleteCardRequest
 		if err := ctx.Bind(&in); err != nil {
 			return err
 		}
@@ -97,23 +97,20 @@ func _Greeter_DeleteCard0_HTTP_Handler(srv GreeterHTTPServer) func(ctx http.Cont
 		}
 		http.SetOperation(ctx, OperationGreeterDeleteCard)
 		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
-			return srv.DeleteCard(ctx, req.(*DeleteRequest))
+			return srv.DeleteCard(ctx, req.(*DeleteCardRequest))
 		})
 		out, err := h(ctx, &in)
 		if err != nil {
 			return err
 		}
-		reply := out.(*DeleteResponse)
+		reply := out.(*DeleteCardResponse)
 		return ctx.Result(200, reply)
 	}
 }
 
 func _Greeter_FindCard0_HTTP_Handler(srv GreeterHTTPServer) func(ctx http.Context) error {
 	return func(ctx http.Context) error {
-		var in FindRequest
-		if err := ctx.Bind(&in); err != nil {
-			return err
-		}
+		var in FindCardRequest
 		if err := ctx.BindQuery(&in); err != nil {
 			return err
 		}
@@ -122,22 +119,22 @@ func _Greeter_FindCard0_HTTP_Handler(srv GreeterHTTPServer) func(ctx http.Contex
 		}
 		http.SetOperation(ctx, OperationGreeterFindCard)
 		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
-			return srv.FindCard(ctx, req.(*FindRequest))
+			return srv.FindCard(ctx, req.(*FindCardRequest))
 		})
 		out, err := h(ctx, &in)
 		if err != nil {
 			return err
 		}
-		reply := out.(*FindResponse)
+		reply := out.(*FindCardResponse)
 		return ctx.Result(200, reply)
 	}
 }
 
 type GreeterHTTPClient interface {
-	CreateCard(ctx context.Context, req *CreateRequest, opts ...http.CallOption) (rsp *CreateResponse, err error)
-	DeleteCard(ctx context.Context, req *DeleteRequest, opts ...http.CallOption) (rsp *DeleteResponse, err error)
-	FindCard(ctx context.Context, req *FindRequest, opts ...http.CallOption) (rsp *FindResponse, err error)
-	UpdateCard(ctx context.Context, req *UpdateRequest, opts ...http.CallOption) (rsp *UpdateResponse, err error)
+	CreateCard(ctx context.Context, req *CreateCardRequest, opts ...http.CallOption) (rsp *CreateCardResponse, err error)
+	DeleteCard(ctx context.Context, req *DeleteCardRequest, opts ...http.CallOption) (rsp *DeleteCardResponse, err error)
+	FindCard(ctx context.Context, req *FindCardRequest, opts ...http.CallOption) (rsp *FindCardResponse, err error)
+	UpdateCard(ctx context.Context, req *UpdateCardRequest, opts ...http.CallOption) (rsp *UpdateCardResponse, err error)
 }
 
 type GreeterHTTPClientImpl struct {
@@ -148,8 +145,8 @@ func NewGreeterHTTPClient(client *http.Client) GreeterHTTPClient {
 	return &GreeterHTTPClientImpl{client}
 }
 
-func (c *GreeterHTTPClientImpl) CreateCard(ctx context.Context, in *CreateRequest, opts ...http.CallOption) (*CreateResponse, error) {
-	var out CreateResponse
+func (c *GreeterHTTPClientImpl) CreateCard(ctx context.Context, in *CreateCardRequest, opts ...http.CallOption) (*CreateCardResponse, error) {
+	var out CreateCardResponse
 	pattern := "/v1/create"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationGreeterCreateCard))
@@ -161,8 +158,8 @@ func (c *GreeterHTTPClientImpl) CreateCard(ctx context.Context, in *CreateReques
 	return &out, nil
 }
 
-func (c *GreeterHTTPClientImpl) DeleteCard(ctx context.Context, in *DeleteRequest, opts ...http.CallOption) (*DeleteResponse, error) {
-	var out DeleteResponse
+func (c *GreeterHTTPClientImpl) DeleteCard(ctx context.Context, in *DeleteCardRequest, opts ...http.CallOption) (*DeleteCardResponse, error) {
+	var out DeleteCardResponse
 	pattern := "v1/delete/{card_id}"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationGreeterDeleteCard))
@@ -174,21 +171,21 @@ func (c *GreeterHTTPClientImpl) DeleteCard(ctx context.Context, in *DeleteReques
 	return &out, nil
 }
 
-func (c *GreeterHTTPClientImpl) FindCard(ctx context.Context, in *FindRequest, opts ...http.CallOption) (*FindResponse, error) {
-	var out FindResponse
+func (c *GreeterHTTPClientImpl) FindCard(ctx context.Context, in *FindCardRequest, opts ...http.CallOption) (*FindCardResponse, error) {
+	var out FindCardResponse
 	pattern := "v1/find/{card_id}"
-	path := binding.EncodeURL(pattern, in, false)
+	path := binding.EncodeURL(pattern, in, true)
 	opts = append(opts, http.Operation(OperationGreeterFindCard))
 	opts = append(opts, http.PathTemplate(pattern))
-	err := c.cc.Invoke(ctx, "GET", path, in, &out, opts...)
+	err := c.cc.Invoke(ctx, "GET", path, nil, &out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &out, nil
 }
 
-func (c *GreeterHTTPClientImpl) UpdateCard(ctx context.Context, in *UpdateRequest, opts ...http.CallOption) (*UpdateResponse, error) {
-	var out UpdateResponse
+func (c *GreeterHTTPClientImpl) UpdateCard(ctx context.Context, in *UpdateCardRequest, opts ...http.CallOption) (*UpdateCardResponse, error) {
+	var out UpdateCardResponse
 	pattern := "v1/update"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationGreeterUpdateCard))

@@ -14,6 +14,8 @@ import (
 	"payment-service/internal/service"
 	"github.com/go-kratos/kratos/v2"
 	"github.com/go-kratos/kratos/v2/log"
+	client "payment-service/internal/client"
+	"fmt"
 )
 
 import (
@@ -28,9 +30,18 @@ func wireApp(confServer *conf.Server, confData *conf.Data, logger log.Logger) (*
 	if err != nil {
 		return nil, nil, err
 	}
+	accountClient, err := client.NewAccountClient("localhost:9002") // or use confData
+	if err != nil {
+		return nil, nil, fmt.Errorf("failed to create account client: %w", err)
+	}
+
+	TransactionClient, err := client.NewTransactionClient("localhost:9005") // or use confData
+	if err != nil {
+		return nil, nil, fmt.Errorf("failed to create account client: %w", err)
+	}
 	greeterRepo := data.NewPaymentRepo(dataData, logger)
 	greeterUsecase := biz.NewPaymentUsecase(greeterRepo, logger)
-	greeterService := service.NewPaymentService(greeterUsecase)
+	greeterService := service.NewPaymentService(greeterUsecase,accountClient,TransactionClient)
 	grpcServer := server.NewGRPCServer(confServer, greeterService, logger)
 	httpServer := server.NewHTTPServer(confServer, greeterService, logger)
 	app := newApp(logger, grpcServer, httpServer)

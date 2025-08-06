@@ -1,0 +1,105 @@
+syntax = "proto3";
+
+package helloworld.v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "account-block/api/helloworld/v1;v1";
+option java_multiple_files = true;
+option java_package = "dev.kratos.api.helloworld.v1";
+option java_outer_classname = "HelloworldProtoV1";
+
+// The greeting service definition.
+service Greeter {
+  // Sends a greeting
+  rpc CreateAccountBlock (BlockRequest) returns (BlockResponse) {
+    option (google.api.http) = {
+      post: "v1/accountblock"
+      body:"*"
+    };
+  }
+
+   rpc AdminAccountBlock (BlockRequest) returns (BlockResponse) {
+    option (google.api.http) = {
+      post: "v1/adminaccountblock"
+      body:"*"
+    };
+  }
+
+   rpc RiskAccountBlock (BlockRequest) returns (BlockResponse) {
+    option (google.api.http) = {
+      post: "v1/riskaccountblock"
+      body:"*"
+    };
+  }
+
+   rpc CaseAccountBlock (BlockRequest) returns (BlockResponse) {
+    option (google.api.http) = {
+      post: "v1/caseaccountblock"
+      body:"*"
+    };
+  }
+
+   rpc FindAccountBlock (FindBlockRequest) returns (FindBlockResponse) {
+    option (google.api.http) = {
+      get: "v1/find/accountblock/{accountNumber}"
+      body:"*"
+    };
+  }
+
+  rpc UpdateAccountBlock (UpdateBlockRequest) returns (UpdateBlockResponse) {
+    option (google.api.http) = {
+      put: "v1/update/accountblock"
+      body:"*"
+    };
+  }
+}
+
+enum AccountBlock{
+  UNKNOWN_BLOCK = 0;
+  riskBlock=1;
+  caseBlock=2;
+  adminBlock=3;
+  release=4;
+}
+
+// The request message containing the user's name.
+message BlockRequest {
+   int64 accountId=1;
+   int64 accountNumber=3;
+   AccountBlock accblock=2;
+}
+
+// The response message containing the greetings
+message BlockResponse {
+  int64 accountId=1;
+  int64 accountNumber=2;
+  AccountBlock accblock=3;
+  string message=4;
+}
+message FindBlockRequest{
+  int64 accountNumber=1;
+  int64 accountId=2;
+
+}
+
+message FindBlockResponse{
+  int64 accountNumber=1;
+  AccountBlock accblock=2;
+  string message=3;
+  int64 accountId=4;
+
+}
+
+message UpdateBlockRequest{
+  int64 accountId=1;
+  int64 accountNumber=2;
+  AccountBlock accblock=3;
+}
+
+message UpdateBlockResponse{
+  int64 accountId=1;
+  int64 accountNumber=2;
+  AccountBlock accblock=3;
+  string message=4;
+}

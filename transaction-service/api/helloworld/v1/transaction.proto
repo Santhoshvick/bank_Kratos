@@ -11,27 +11,27 @@ option java_outer_classname = "HelloworldProtoV1";
 
 // The greeting service definition.
 service Transaction{
-  rpc CreateTransaction(createRequest) returns (createResponse){
+  rpc CreateTransaction(createRequestTransaction) returns (createResponseTransaction){
     option (google.api.http)={
       post:"v1/transaction/create",
       body:"*"
     };
   };
-  rpc UpdateTransaction(updateRequest) returns (updateResponse){
+  rpc UpdateTransaction(updateRequestTransaction) returns (updateResponseTransaction){
     option (google.api.http)={
       put:"v1/transaction/update",
       body:"*"
     };
   };
 
-  rpc DeleteTransaction(deleteRequest) returns (deleteResponse){
+  rpc DeleteTransaction(deleteRequestTransaction) returns (deleteResponseTransaction){
     option (google.api.http)={
       delete:"v1/transaction/delete/{transactionId}",
       body:"*"
     };
   };
 
-  rpc FindTransaction(findRequest) returns (findReponse){
+  rpc FindTransaction(findRequestTransaction) returns (findReponseTransaction){
     option (google.api.http)={
       get:"v1/transaction/find/{transactionId}",
       body:"*"
@@ -40,7 +40,7 @@ service Transaction{
 }
 
 
-message createRequest{
+message createRequestTransaction{
   int64 transactionId=1;
   int64 accountId=2;
   int64 relatedId=3;
@@ -52,7 +52,7 @@ message createRequest{
   string referenceNumber=9;
   string postingDate=10;
 }
-message createResponse{
+message createResponseTransaction {
   int64 transactionId=1;
   int64 accountId=2;
   int64 relatedId=3;
@@ -63,22 +63,10 @@ message createResponse{
   string description=8;
   string referenceNumber=9;
   string postingDate=10;
-}
-
-message updateRequest{
-  int64 transactionId=1;
-  int64 accountId=2;
-  int64 relatedId=3;
-  string transactionType=4;
-  string amount=5;
-  string currency=6;
-  string status=7;
-  string description=8;
-  string referenceNumber=9;
-  string postingDate=10;
+  string message=11;
 }
 
-message updateResponse{
+message updateRequestTransaction{
   int64 transactionId=1;
   int64 accountId=2;
   int64 relatedId=3;
@@ -91,9 +79,23 @@ message updateResponse{
   string postingDate=10;
 }
 
+message updateResponseTransaction{
+  int64 transactionId=1;
+  int64 accountId=2;
+  int64 relatedId=3;
+  string transactionType=4;
+  string amount=5;
+  string currency=6;
+  string status=7;
+  string description=8;
+  string referenceNumber=9;
+  string postingDate=10;
+  string message=11;
+}
 
 
-message deleteRequest{
+
+message deleteRequestTransaction{
   int64 transactionId=1;
   int64 accountId=2;
   int64 relatedId=3;
@@ -105,7 +107,23 @@ message deleteRequest{
   string referenceNumber=9;
   string postingDate=10;
 }
-message deleteResponse{
+message deleteResponseTransaction{
+  int64 transactionId=1;
+  int64 accountId=2;
+  int64 relatedId=3;
+  string transactionType=4;
+  string amount=5;
+  string currency=6;
+  string status=7;
+  string description=8;
+  string referenceNumber=9;
+  string postingDate=10;
+  string message=11;
+}
+
+
+
+message findRequestTransaction{
   int64 transactionId=1;
   int64 accountId=2;
   int64 relatedId=3;
@@ -118,9 +136,7 @@ message deleteResponse{
   string postingDate=10;
 }
 
-
-
-message findRequest{
+message findReponseTransaction{
   int64 transactionId=1;
   int64 accountId=2;
   int64 relatedId=3;
@@ -131,17 +147,5 @@ message findRequest{
   string description=8;
   string referenceNumber=9;
   string postingDate=10;
-}
-
-message findReponse{
-  int64 transactionId=1;
-  int64 accountId=2;
-  int64 relatedId=3;
-  string transactionType=4;
-  string amount=5;
-  string currency=6;
-  string status=7;
-  string description=8;
-  string referenceNumber=9;
-  string postingDate=10;
+  string message=11;
 }

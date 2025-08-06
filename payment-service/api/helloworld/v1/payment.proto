@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package helloworld.v1;
+package helloworld3.v1;
 
 import "google/api/annotations.proto";
 
@@ -49,6 +49,7 @@ message createRequest{
   string paymentMethod=7;
   string referenceNumber=8;
   string status=9;
+  string fee=10;
 }
 
 message createResponse{
@@ -61,6 +62,8 @@ message createResponse{
   string paymentMethod=7;
   string referenceNumber=8;
   string status=9;
+  string message=10;
+  string fee=11;
 }
 
 
@@ -74,6 +77,7 @@ message updateRequest{
   string paymentMethod=7;
   string referenceNumber=8;
   string status=9;
+  
 }
 
 message  updateResponse{
@@ -86,19 +90,13 @@ message  updateResponse{
   string paymentMethod=7;
   string referenceNumber=8;
   string status=9;
+  string message=10;
 }
 
 
 message deleteRequest{
   int64 paymentId=1;
-  int64 fromAccountId=2;
-  int64 toAccountId=3;
-  string paymentType=4;
-  string amount=5;
-  string currency=6;
-  string paymentMethod=7;
-  string referenceNumber=8;
-  string status=9;
+  string currency=2;
 }
 
 message deleteResponse{
@@ -111,6 +109,7 @@ message deleteResponse{
   string paymentMethod=7;
   string referenceNumber=8;
   string status=9;
+  string message=10;
 }
 
 
@@ -136,5 +135,9 @@ message findResponse{
   string paymentMethod=7;
   string referenceNumber=8;
   string status=9;
+  string message=10;
 }
+
+
+
 

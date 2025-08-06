@@ -29,10 +29,10 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type GreeterClient interface {
-	CreateCard(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*CreateResponse, error)
-	UpdateCard(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error)
-	DeleteCard(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
-	FindCard(ctx context.Context, in *FindRequest, opts ...grpc.CallOption) (*FindResponse, error)
+	CreateCard(ctx context.Context, in *CreateCardRequest, opts ...grpc.CallOption) (*CreateCardResponse, error)
+	UpdateCard(ctx context.Context, in *UpdateCardRequest, opts ...grpc.CallOption) (*UpdateCardResponse, error)
+	DeleteCard(ctx context.Context, in *DeleteCardRequest, opts ...grpc.CallOption) (*DeleteCardResponse, error)
+	FindCard(ctx context.Context, in *FindCardRequest, opts ...grpc.CallOption) (*FindCardResponse, error)
 }
 
 type greeterClient struct {
@@ -43,9 +43,9 @@ func NewGreeterClient(cc grpc.ClientConnInterface) GreeterClient {
 	return &greeterClient{cc}
 }
 
-func (c *greeterClient) CreateCard(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*CreateResponse, error) {
+func (c *greeterClient) CreateCard(ctx context.Context, in *CreateCardRequest, opts ...grpc.CallOption) (*CreateCardResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CreateResponse)
+	out := new(CreateCardResponse)
 	err := c.cc.Invoke(ctx, Greeter_CreateCard_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -53,9 +53,9 @@ func (c *greeterClient) CreateCard(ctx context.Context, in *CreateRequest, opts 
 	return out, nil
 }
 
-func (c *greeterClient) UpdateCard(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error) {
+func (c *greeterClient) UpdateCard(ctx context.Context, in *UpdateCardRequest, opts ...grpc.CallOption) (*UpdateCardResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UpdateResponse)
+	out := new(UpdateCardResponse)
 	err := c.cc.Invoke(ctx, Greeter_UpdateCard_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -63,9 +63,9 @@ func (c *greeterClient) UpdateCard(ctx context.Context, in *UpdateRequest, opts 
 	return out, nil
 }
 
-func (c *greeterClient) DeleteCard(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error) {
+func (c *greeterClient) DeleteCard(ctx context.Context, in *DeleteCardRequest, opts ...grpc.CallOption) (*DeleteCardResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(DeleteResponse)
+	out := new(DeleteCardResponse)
 	err := c.cc.Invoke(ctx, Greeter_DeleteCard_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -73,9 +73,9 @@ func (c *greeterClient) DeleteCard(ctx context.Context, in *DeleteRequest, opts 
 	return out, nil
 }
 
-func (c *greeterClient) FindCard(ctx context.Context, in *FindRequest, opts ...grpc.CallOption) (*FindResponse, error) {
+func (c *greeterClient) FindCard(ctx context.Context, in *FindCardRequest, opts ...grpc.CallOption) (*FindCardResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(FindResponse)
+	out := new(FindCardResponse)
 	err := c.cc.Invoke(ctx, Greeter_FindCard_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -87,10 +87,10 @@ func (c *greeterClient) FindCard(ctx context.Context, in *FindRequest, opts ...g
 // All implementations must embed UnimplementedGreeterServer
 // for forward compatibility.
 type GreeterServer interface {
-	CreateCard(context.Context, *CreateRequest) (*CreateResponse, error)
-	UpdateCard(context.Context, *UpdateRequest) (*UpdateResponse, error)
-	DeleteCard(context.Context, *DeleteRequest) (*DeleteResponse, error)
-	FindCard(context.Context, *FindRequest) (*FindResponse, error)
+	CreateCard(context.Context, *CreateCardRequest) (*CreateCardResponse, error)
+	UpdateCard(context.Context, *UpdateCardRequest) (*UpdateCardResponse, error)
+	DeleteCard(context.Context, *DeleteCardRequest) (*DeleteCardResponse, error)
+	FindCard(context.Context, *FindCardRequest) (*FindCardResponse, error)
 	mustEmbedUnimplementedGreeterServer()
 }
 
@@ -101,16 +101,16 @@ type GreeterServer interface {
 // pointer dereference when methods are called.
 type UnimplementedGreeterServer struct{}
 
-func (UnimplementedGreeterServer) CreateCard(context.Context, *CreateRequest) (*CreateResponse, error) {
+func (UnimplementedGreeterServer) CreateCard(context.Context, *CreateCardRequest) (*CreateCardResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateCard not implemented")
 }
-func (UnimplementedGreeterServer) UpdateCard(context.Context, *UpdateRequest) (*UpdateResponse, error) {
+func (UnimplementedGreeterServer) UpdateCard(context.Context, *UpdateCardRequest) (*UpdateCardResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateCard not implemented")
 }
-func (UnimplementedGreeterServer) DeleteCard(context.Context, *DeleteRequest) (*DeleteResponse, error) {
+func (UnimplementedGreeterServer) DeleteCard(context.Context, *DeleteCardRequest) (*DeleteCardResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteCard not implemented")
 }
-func (UnimplementedGreeterServer) FindCard(context.Context, *FindRequest) (*FindResponse, error) {
+func (UnimplementedGreeterServer) FindCard(context.Context, *FindCardRequest) (*FindCardResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindCard not implemented")
 }
 func (UnimplementedGreeterServer) mustEmbedUnimplementedGreeterServer() {}
@@ -135,7 +135,7 @@ func RegisterGreeterServer(s grpc.ServiceRegistrar, srv GreeterServer) {
 }
 
 func _Greeter_CreateCard_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateRequest)
+	in := new(CreateCardRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -147,13 +147,13 @@ func _Greeter_CreateCard_Handler(srv interface{}, ctx context.Context, dec func(
 		FullMethod: Greeter_CreateCard_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GreeterServer).CreateCard(ctx, req.(*CreateRequest))
+		return srv.(GreeterServer).CreateCard(ctx, req.(*CreateCardRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Greeter_UpdateCard_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateRequest)
+	in := new(UpdateCardRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -165,13 +165,13 @@ func _Greeter_UpdateCard_Handler(srv interface{}, ctx context.Context, dec func(
 		FullMethod: Greeter_UpdateCard_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GreeterServer).UpdateCard(ctx, req.(*UpdateRequest))
+		return srv.(GreeterServer).UpdateCard(ctx, req.(*UpdateCardRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Greeter_DeleteCard_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteRequest)
+	in := new(DeleteCardRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -183,13 +183,13 @@ func _Greeter_DeleteCard_Handler(srv interface{}, ctx context.Context, dec func(
 		FullMethod: Greeter_DeleteCard_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GreeterServer).DeleteCard(ctx, req.(*DeleteRequest))
+		return srv.(GreeterServer).DeleteCard(ctx, req.(*DeleteCardRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Greeter_FindCard_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FindRequest)
+	in := new(FindCardRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -201,7 +201,7 @@ func _Greeter_FindCard_Handler(srv interface{}, ctx context.Context, dec func(in
 		FullMethod: Greeter_FindCard_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GreeterServer).FindCard(ctx, req.(*FindRequest))
+		return srv.(GreeterServer).FindCard(ctx, req.(*FindCardRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

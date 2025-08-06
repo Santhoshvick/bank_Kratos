@@ -137,6 +137,8 @@ components:
                     type: string
                 status:
                     type: string
+                fee:
+                    type: string
         CreateResponse:
             type: object
             properties:
@@ -158,26 +160,16 @@ components:
                     type: string
                 status:
                     type: string
+                message:
+                    type: string
+                fee:
+                    type: string
         DeleteRequest:
             type: object
             properties:
                 paymentId:
                     type: string
-                fromAccountId:
-                    type: string
-                toAccountId:
-                    type: string
-                paymentType:
-                    type: string
-                amount:
-                    type: string
                 currency:
-                    type: string
-                paymentMethod:
-                    type: string
-                referenceNumber:
-                    type: string
-                status:
                     type: string
         DeleteResponse:
             type: object
@@ -199,6 +191,8 @@ components:
                 referenceNumber:
                     type: string
                 status:
+                    type: string
+                message:
                     type: string
         FindRequest:
             type: object
@@ -241,6 +235,8 @@ components:
                 referenceNumber:
                     type: string
                 status:
+                    type: string
+                message:
                     type: string
         GoogleProtobufAny:
             type: object
@@ -307,6 +303,8 @@ components:
                 referenceNumber:
                     type: string
                 status:
+                    type: string
+                message:
                     type: string
 tags:
     - name: Payment

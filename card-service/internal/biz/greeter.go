@@ -3,21 +3,14 @@ package biz
 import (
 	"context"
 	"time"
-
-	v1 "card-service/api/helloworld/v1"
-
-	"github.com/go-kratos/kratos/v2/errors"
 	"github.com/go-kratos/kratos/v2/log"
 )
 
-var (
-	// ErrUserNotFound is user not found.
-	ErrUserNotFound = errors.NotFound(v1.ErrorReason_USER_NOT_FOUND.String(), "user not found")
-)
+
 
 // Greeter is a Greeter model.
 type Card struct {
-	CardId int64
+	CardId int64 `gorm:"column:card_id;type:bigint;primaryKey"`
 	AccountNumber int64
 	CardNumber string
 	CardType string

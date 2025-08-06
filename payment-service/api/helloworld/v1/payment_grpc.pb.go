@@ -19,10 +19,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Payment_CreatePayment_FullMethodName = "/helloworld.v1.payment/CreatePayment"
-	Payment_UpdatePayment_FullMethodName = "/helloworld.v1.payment/UpdatePayment"
-	Payment_DeletePayment_FullMethodName = "/helloworld.v1.payment/DeletePayment"
-	Payment_FindPayment_FullMethodName   = "/helloworld.v1.payment/FindPayment"
+	Payment_CreatePayment_FullMethodName = "/helloworld3.v1.payment/CreatePayment"
+	Payment_UpdatePayment_FullMethodName = "/helloworld3.v1.payment/UpdatePayment"
+	Payment_DeletePayment_FullMethodName = "/helloworld3.v1.payment/DeletePayment"
+	Payment_FindPayment_FullMethodName   = "/helloworld3.v1.payment/FindPayment"
 )
 
 // PaymentClient is the client API for Payment service.
@@ -210,7 +210,7 @@ func _Payment_FindPayment_Handler(srv interface{}, ctx context.Context, dec func
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Payment_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "helloworld.v1.payment",
+	ServiceName: "helloworld3.v1.payment",
 	HandlerType: (*PaymentServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

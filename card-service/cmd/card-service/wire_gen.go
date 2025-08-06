@@ -13,7 +13,9 @@ import (
 	"card-service/internal/server"
 	"card-service/internal/service"
 	"github.com/go-kratos/kratos/v2"
-	"github.com/go-kratos/kratos/v2/log"
+	"github.com/go-kratos/kratos/v2/log"	
+	client "card-service/internal/client"
+	"fmt"
 )
 
 import (
@@ -28,9 +30,15 @@ func wireApp(confServer *conf.Server, confData *conf.Data, logger log.Logger) (*
 	if err != nil {
 		return nil, nil, err
 	}
+
+	accountClient, err := client.NewAccountClient("localhost:9002") // or use confData
+	if err != nil {
+		return nil, nil, fmt.Errorf("failed to create account client: %w", err)
+	}
+	
 	greeterRepo := data.NewCardRepo(dataData, logger)
 	greeterUsecase := biz.NewCardUsecase(greeterRepo, logger)
-	greeterService := service.NewCardService(greeterUsecase)
+	greeterService := service.NewCardService(greeterUsecase,accountClient)
 	grpcServer := server.NewGRPCServer(confServer, greeterService, logger)
 	httpServer := server.NewHTTPServer(confServer, greeterService, logger)
 	app := newApp(logger, grpcServer, httpServer)

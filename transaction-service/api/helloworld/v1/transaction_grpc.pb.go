@@ -31,10 +31,10 @@ const (
 //
 // The greeting service definition.
 type TransactionClient interface {
-	CreateTransaction(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*CreateResponse, error)
-	UpdateTransaction(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error)
-	DeleteTransaction(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
-	FindTransaction(ctx context.Context, in *FindRequest, opts ...grpc.CallOption) (*FindReponse, error)
+	CreateTransaction(ctx context.Context, in *CreateRequestTransaction, opts ...grpc.CallOption) (*CreateResponseTransaction, error)
+	UpdateTransaction(ctx context.Context, in *UpdateRequestTransaction, opts ...grpc.CallOption) (*UpdateResponseTransaction, error)
+	DeleteTransaction(ctx context.Context, in *DeleteRequestTransaction, opts ...grpc.CallOption) (*DeleteResponseTransaction, error)
+	FindTransaction(ctx context.Context, in *FindRequestTransaction, opts ...grpc.CallOption) (*FindReponseTransaction, error)
 }
 
 type transactionClient struct {
@@ -45,9 +45,9 @@ func NewTransactionClient(cc grpc.ClientConnInterface) TransactionClient {
 	return &transactionClient{cc}
 }
 
-func (c *transactionClient) CreateTransaction(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*CreateResponse, error) {
+func (c *transactionClient) CreateTransaction(ctx context.Context, in *CreateRequestTransaction, opts ...grpc.CallOption) (*CreateResponseTransaction, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CreateResponse)
+	out := new(CreateResponseTransaction)
 	err := c.cc.Invoke(ctx, Transaction_CreateTransaction_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -55,9 +55,9 @@ func (c *transactionClient) CreateTransaction(ctx context.Context, in *CreateReq
 	return out, nil
 }
 
-func (c *transactionClient) UpdateTransaction(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error) {
+func (c *transactionClient) UpdateTransaction(ctx context.Context, in *UpdateRequestTransaction, opts ...grpc.CallOption) (*UpdateResponseTransaction, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UpdateResponse)
+	out := new(UpdateResponseTransaction)
 	err := c.cc.Invoke(ctx, Transaction_UpdateTransaction_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -65,9 +65,9 @@ func (c *transactionClient) UpdateTransaction(ctx context.Context, in *UpdateReq
 	return out, nil
 }
 
-func (c *transactionClient) DeleteTransaction(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error) {
+func (c *transactionClient) DeleteTransaction(ctx context.Context, in *DeleteRequestTransaction, opts ...grpc.CallOption) (*DeleteResponseTransaction, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(DeleteResponse)
+	out := new(DeleteResponseTransaction)
 	err := c.cc.Invoke(ctx, Transaction_DeleteTransaction_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -75,9 +75,9 @@ func (c *transactionClient) DeleteTransaction(ctx context.Context, in *DeleteReq
 	return out, nil
 }
 
-func (c *transactionClient) FindTransaction(ctx context.Context, in *FindRequest, opts ...grpc.CallOption) (*FindReponse, error) {
+func (c *transactionClient) FindTransaction(ctx context.Context, in *FindRequestTransaction, opts ...grpc.CallOption) (*FindReponseTransaction, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(FindReponse)
+	out := new(FindReponseTransaction)
 	err := c.cc.Invoke(ctx, Transaction_FindTransaction_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -91,10 +91,10 @@ func (c *transactionClient) FindTransaction(ctx context.Context, in *FindRequest
 //
 // The greeting service definition.
 type TransactionServer interface {
-	CreateTransaction(context.Context, *CreateRequest) (*CreateResponse, error)
-	UpdateTransaction(context.Context, *UpdateRequest) (*UpdateResponse, error)
-	DeleteTransaction(context.Context, *DeleteRequest) (*DeleteResponse, error)
-	FindTransaction(context.Context, *FindRequest) (*FindReponse, error)
+	CreateTransaction(context.Context, *CreateRequestTransaction) (*CreateResponseTransaction, error)
+	UpdateTransaction(context.Context, *UpdateRequestTransaction) (*UpdateResponseTransaction, error)
+	DeleteTransaction(context.Context, *DeleteRequestTransaction) (*DeleteResponseTransaction, error)
+	FindTransaction(context.Context, *FindRequestTransaction) (*FindReponseTransaction, error)
 	mustEmbedUnimplementedTransactionServer()
 }
 
@@ -105,16 +105,16 @@ type TransactionServer interface {
 // pointer dereference when methods are called.
 type UnimplementedTransactionServer struct{}
 
-func (UnimplementedTransactionServer) CreateTransaction(context.Context, *CreateRequest) (*CreateResponse, error) {
+func (UnimplementedTransactionServer) CreateTransaction(context.Context, *CreateRequestTransaction) (*CreateResponseTransaction, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateTransaction not implemented")
 }
-func (UnimplementedTransactionServer) UpdateTransaction(context.Context, *UpdateRequest) (*UpdateResponse, error) {
+func (UnimplementedTransactionServer) UpdateTransaction(context.Context, *UpdateRequestTransaction) (*UpdateResponseTransaction, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateTransaction not implemented")
 }
-func (UnimplementedTransactionServer) DeleteTransaction(context.Context, *DeleteRequest) (*DeleteResponse, error) {
+func (UnimplementedTransactionServer) DeleteTransaction(context.Context, *DeleteRequestTransaction) (*DeleteResponseTransaction, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteTransaction not implemented")
 }
-func (UnimplementedTransactionServer) FindTransaction(context.Context, *FindRequest) (*FindReponse, error) {
+func (UnimplementedTransactionServer) FindTransaction(context.Context, *FindRequestTransaction) (*FindReponseTransaction, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindTransaction not implemented")
 }
 func (UnimplementedTransactionServer) mustEmbedUnimplementedTransactionServer() {}
@@ -139,7 +139,7 @@ func RegisterTransactionServer(s grpc.ServiceRegistrar, srv TransactionServer) {
 }
 
 func _Transaction_CreateTransaction_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateRequest)
+	in := new(CreateRequestTransaction)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -151,13 +151,13 @@ func _Transaction_CreateTransaction_Handler(srv interface{}, ctx context.Context
 		FullMethod: Transaction_CreateTransaction_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionServer).CreateTransaction(ctx, req.(*CreateRequest))
+		return srv.(TransactionServer).CreateTransaction(ctx, req.(*CreateRequestTransaction))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Transaction_UpdateTransaction_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateRequest)
+	in := new(UpdateRequestTransaction)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -169,13 +169,13 @@ func _Transaction_UpdateTransaction_Handler(srv interface{}, ctx context.Context
 		FullMethod: Transaction_UpdateTransaction_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionServer).UpdateTransaction(ctx, req.(*UpdateRequest))
+		return srv.(TransactionServer).UpdateTransaction(ctx, req.(*UpdateRequestTransaction))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Transaction_DeleteTransaction_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteRequest)
+	in := new(DeleteRequestTransaction)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -187,13 +187,13 @@ func _Transaction_DeleteTransaction_Handler(srv interface{}, ctx context.Context
 		FullMethod: Transaction_DeleteTransaction_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionServer).DeleteTransaction(ctx, req.(*DeleteRequest))
+		return srv.(TransactionServer).DeleteTransaction(ctx, req.(*DeleteRequestTransaction))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Transaction_FindTransaction_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FindRequest)
+	in := new(FindRequestTransaction)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -205,7 +205,7 @@ func _Transaction_FindTransaction_Handler(srv interface{}, ctx context.Context, 
 		FullMethod: Transaction_FindTransaction_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransactionServer).FindTransaction(ctx, req.(*FindRequest))
+		return srv.(TransactionServer).FindTransaction(ctx, req.(*FindRequestTransaction))
 	}
 	return interceptor(ctx, in, info, handler)
 }

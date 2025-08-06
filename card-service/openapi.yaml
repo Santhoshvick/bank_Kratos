@@ -15,7 +15,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/CreateRequest'
+                            $ref: '#/components/schemas/CreateCardRequest'
                 required: true
             responses:
                 "200":
@@ -23,7 +23,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/CreateResponse'
+                                $ref: '#/components/schemas/CreateCardResponse'
                 default:
                     description: Default error response
                     content:
@@ -45,7 +45,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/DeleteRequest'
+                            $ref: '#/components/schemas/DeleteCardRequest'
                 required: true
             responses:
                 "200":
@@ -53,7 +53,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/DeleteResponse'
+                                $ref: '#/components/schemas/DeleteCardResponse'
                 default:
                     description: Default error response
                     content:
@@ -71,19 +71,45 @@ paths:
                   required: true
                   schema:
                     type: string
-            requestBody:
-                content:
-                    application/json:
-                        schema:
-                            $ref: '#/components/schemas/FindRequest'
-                required: true
+                - name: accountNumber
+                  in: query
+                  schema:
+                    type: string
+                - name: cardNumber
+                  in: query
+                  schema:
+                    type: string
+                - name: cardType
+                  in: query
+                  schema:
+                    type: string
+                - name: cardStatus
+                  in: query
+                  schema:
+                    type: string
+                - name: expiryDate
+                  in: query
+                  schema:
+                    type: string
+                - name: dailyLimit
+                  in: query
+                  schema:
+                    type: string
+                - name: monthlyLimit
+                  in: query
+                  schema:
+                    type: string
+                - name: pinAttempt
+                  in: query
+                  schema:
+                    type: string
             responses:
                 "200":
                     description: OK
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/FindResponse'
+                                $ref: '#/components/schemas/FindCardResponse'
                 default:
                     description: Default error response
                     content:
@@ -99,7 +125,7 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/UpdateRequest'
+                            $ref: '#/components/schemas/UpdateCardRequest'
                 required: true
             responses:
                 "200":
@@ -107,7 +133,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/UpdateResponse'
+                                $ref: '#/components/schemas/UpdateCardResponse'
                 default:
                     description: Default error response
                     content:
@@ -116,7 +142,7 @@ paths:
                                 $ref: '#/components/schemas/Status'
 components:
     schemas:
-        CreateRequest:
+        CreateCardRequest:
             type: object
             properties:
                 cardId:
@@ -137,7 +163,7 @@ components:
                     type: string
                 pinAttempt:
                     type: string
-        CreateResponse:
+        CreateCardResponse:
             type: object
             properties:
                 cardId:
@@ -158,14 +184,39 @@ components:
                     type: string
                 pinAttempt:
                     type: string
-        DeleteRequest:
+                message:
+                    type: string
+        DeleteCardRequest:
             type: object
             properties:
                 cardId:
                     type: string
                 accountNumber:
                     type: string
-        DeleteResponse:
+        DeleteCardResponse:
+            type: object
+            properties:
+                cardId:
+                    type: string
+                accountNumber:
+                    type: string
+                cardNumber:
+                    type: string
+                cardType:
+                    type: string
+                cardStatus:
+                    type: string
+                expiryDate:
+                    type: string
+                dailyLimit:
+                    type: string
+                monthlyLimit:
+                    type: string
+                pinAttempt:
+                    type: string
+                message:
+                    type: string
+        FindCardResponse:
             type: object
             properties:
                 cardId:
@@ -186,33 +237,7 @@ components:
                     type: string
                 pinAttempt:
                     type: string
-        FindRequest:
-            type: object
-            properties:
-                cardId:
-                    type: string
-                accountNumber:
-                    type: string
-        FindResponse:
-            type: object
-            properties:
-                cardId:
-                    type: string
-                accountNumber:
-                    type: string
-                cardNumber:
-                    type: string
-                cardType:
-                    type: string
-                cardStatus:
-                    type: string
-                expiryDate:
-                    type: string
-                dailyLimit:
-                    type: string
-                monthlyLimit:
-                    type: string
-                pinAttempt:
+                message:
                     type: string
         GoogleProtobufAny:
             type: object
@@ -238,7 +263,7 @@ components:
                         $ref: '#/components/schemas/GoogleProtobufAny'
                     description: A list of messages that carry the error details.  There is a common set of message types for APIs to use.
             description: 'The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).'
-        UpdateRequest:
+        UpdateCardRequest:
             type: object
             properties:
                 cardId:
@@ -259,7 +284,7 @@ components:
                     type: string
                 pinAttempt:
                     type: string
-        UpdateResponse:
+        UpdateCardResponse:
             type: object
             properties:
                 cardId:
@@ -279,6 +304,8 @@ components:
                 monthlyLimit:
                     type: string
                 pinAttempt:
+                    type: string
+                message:
                     type: string
 tags:
     - name: Greeter

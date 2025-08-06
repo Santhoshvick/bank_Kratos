@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package helloworld.v1;
+
+
+import "google/api/annotations.proto";
+
+option go_package = "message-service/api/helloworld/v1;v1";
+option java_multiple_files = true;
+option java_package = "dev.kratos.api.helloworld.v1";
+option java_outer_classname = "HelloworldProtoV1";
+
+// The greeting service definition.
+service Notification {
+  // Sends a greeting
+  rpc CreateNotification (NotificationRequest) returns (NotificationResponse) {
+    option (google.api.http) = {
+      post: "v1/alert/otp"
+      body:"*"
+    };
+  }
+  rpc CreateTransactionNotification (TransactionRequest) returns (TransactionResponse) {
+    option (google.api.http) = {
+      post: "v1/alert/transaction"
+      body:"*"
+    };
+  }
+}
+
+
+message NotificationRequest {
+  string email=1;
+}
+message NotificationResponse {
+  int64 otp=1;
+}
+
+message TransactionRequest{
+
+}
+
+message TransactionResponse{
+  string message1=1;
+}

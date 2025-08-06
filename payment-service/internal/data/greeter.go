@@ -37,6 +37,7 @@ func (r *PaymentRepo) UpdatePayment(ctx context.Context, g *biz.Payment) (*biz.P
 	if result.Error!=nil{
 		return nil,result.Error
 	}
+	
 	return g, nil
 }
 
