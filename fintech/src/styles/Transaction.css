@@ -1,0 +1,29 @@
+.transaction-details table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.transaction-details th,
+.transaction-details td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.transaction-details{
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.payment h3{
+    display: inline-block;
+    margin-left: 120px;
+}
+h2{
+    display: inline-block;
+}
+.action-btn,.close-btn{
+    display: inline;
+    margin-left: 170px;
+    margin-top: -400px;
+
+}
