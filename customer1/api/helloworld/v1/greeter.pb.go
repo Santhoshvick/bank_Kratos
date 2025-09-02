@@ -296,6 +296,246 @@ func (x *CreateCustomerResponse) GetAddress() string {
 	return ""
 }
 
+type DeleteCustomerRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteCustomerRequest) Reset() {
+	*x = DeleteCustomerRequest{}
+	mi := &file_api_helloworld_v1_greeter_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteCustomerRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteCustomerRequest) ProtoMessage() {}
+
+func (x *DeleteCustomerRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_api_helloworld_v1_greeter_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteCustomerRequest.ProtoReflect.Descriptor instead.
+func (*DeleteCustomerRequest) Descriptor() ([]byte, []int) {
+	return file_api_helloworld_v1_greeter_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *DeleteCustomerRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+type DeleteCustomerResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Message       string                 `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteCustomerResponse) Reset() {
+	*x = DeleteCustomerResponse{}
+	mi := &file_api_helloworld_v1_greeter_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteCustomerResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteCustomerResponse) ProtoMessage() {}
+
+func (x *DeleteCustomerResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_api_helloworld_v1_greeter_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteCustomerResponse.ProtoReflect.Descriptor instead.
+func (*DeleteCustomerResponse) Descriptor() ([]byte, []int) {
+	return file_api_helloworld_v1_greeter_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *DeleteCustomerResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+type UpdateCustomerRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Id            string                 `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
+	Address       string                 `protobuf:"bytes,3,opt,name=address,proto3" json:"address,omitempty"`
+	Phone         string                 `protobuf:"bytes,4,opt,name=phone,proto3" json:"phone,omitempty"`
+	Email         string                 `protobuf:"bytes,5,opt,name=email,proto3" json:"email,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateCustomerRequest) Reset() {
+	*x = UpdateCustomerRequest{}
+	mi := &file_api_helloworld_v1_greeter_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateCustomerRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateCustomerRequest) ProtoMessage() {}
+
+func (x *UpdateCustomerRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_api_helloworld_v1_greeter_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateCustomerRequest.ProtoReflect.Descriptor instead.
+func (*UpdateCustomerRequest) Descriptor() ([]byte, []int) {
+	return file_api_helloworld_v1_greeter_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *UpdateCustomerRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *UpdateCustomerRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *UpdateCustomerRequest) GetAddress() string {
+	if x != nil {
+		return x.Address
+	}
+	return ""
+}
+
+func (x *UpdateCustomerRequest) GetPhone() string {
+	if x != nil {
+		return x.Phone
+	}
+	return ""
+}
+
+func (x *UpdateCustomerRequest) GetEmail() string {
+	if x != nil {
+		return x.Email
+	}
+	return ""
+}
+
+type UpdateCustomerResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Id            string                 `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
+	Address       string                 `protobuf:"bytes,3,opt,name=address,proto3" json:"address,omitempty"`
+	Phone         string                 `protobuf:"bytes,4,opt,name=phone,proto3" json:"phone,omitempty"`
+	Email         string                 `protobuf:"bytes,5,opt,name=email,proto3" json:"email,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateCustomerResponse) Reset() {
+	*x = UpdateCustomerResponse{}
+	mi := &file_api_helloworld_v1_greeter_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateCustomerResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateCustomerResponse) ProtoMessage() {}
+
+func (x *UpdateCustomerResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_api_helloworld_v1_greeter_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateCustomerResponse.ProtoReflect.Descriptor instead.
+func (*UpdateCustomerResponse) Descriptor() ([]byte, []int) {
+	return file_api_helloworld_v1_greeter_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *UpdateCustomerResponse) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *UpdateCustomerResponse) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *UpdateCustomerResponse) GetAddress() string {
+	if x != nil {
+		return x.Address
+	}
+	return ""
+}
+
+func (x *UpdateCustomerResponse) GetPhone() string {
+	if x != nil {
+		return x.Phone
+	}
+	return ""
+}
+
+func (x *UpdateCustomerResponse) GetEmail() string {
+	if x != nil {
+		return x.Email
+	}
+	return ""
+}
+
 var File_api_helloworld_v1_greeter_proto protoreflect.FileDescriptor
 
 const file_api_helloworld_v1_greeter_proto_rawDesc = "" +
@@ -321,10 +561,28 @@ const file_api_helloworld_v1_greeter_proto_rawDesc = "" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x14\n" +
 	"\x05email\x18\x03 \x01(\tR\x05email\x12\x14\n" +
 	"\x05phone\x18\x04 \x01(\tR\x05phone\x12\x18\n" +
-	"\aaddress\x18\x05 \x01(\tR\aaddress2\xea\x01\n" +
+	"\aaddress\x18\x05 \x01(\tR\aaddress\"'\n" +
+	"\x15DeleteCustomerRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"2\n" +
+	"\x16DeleteCustomerResponse\x12\x18\n" +
+	"\amessage\x18\x01 \x01(\tR\amessage\"\x81\x01\n" +
+	"\x15UpdateCustomerRequest\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12\x0e\n" +
+	"\x02id\x18\x02 \x01(\tR\x02id\x12\x18\n" +
+	"\aaddress\x18\x03 \x01(\tR\aaddress\x12\x14\n" +
+	"\x05phone\x18\x04 \x01(\tR\x05phone\x12\x14\n" +
+	"\x05email\x18\x05 \x01(\tR\x05email\"\x82\x01\n" +
+	"\x16UpdateCustomerResponse\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12\x0e\n" +
+	"\x02id\x18\x02 \x01(\tR\x02id\x12\x18\n" +
+	"\aaddress\x18\x03 \x01(\tR\aaddress\x12\x14\n" +
+	"\x05phone\x18\x04 \x01(\tR\x05phone\x12\x14\n" +
+	"\x05email\x18\x05 \x01(\tR\x05email2\xe7\x03\n" +
 	"\aGreeter\x12`\n" +
 	"\bSayHello\x12\x1b.helloworld.v1.HelloRequest\x1a\x19.helloworld.v1.HelloReply\"\x1c\x82\xd3\xe4\x93\x02\x16\x12\x14/helloworld/get/{id}\x12}\n" +
-	"\x0eCreateCustomer\x12$.helloworld.v1.CreateCustomerRequest\x1a%.helloworld.v1.CreateCustomerResponse\"\x1e\x82\xd3\xe4\x93\x02\x18:\x01*\"\x13/v1/create/customerBS\n" +
+	"\x0eCreateCustomer\x12$.helloworld.v1.CreateCustomerRequest\x1a%.helloworld.v1.CreateCustomerResponse\"\x1e\x82\xd3\xe4\x93\x02\x18:\x01*\"\x13/v1/create/customer\x12}\n" +
+	"\x0eDeleteCustomer\x12$.helloworld.v1.DeleteCustomerRequest\x1a%.helloworld.v1.DeleteCustomerResponse\"\x1e\x82\xd3\xe4\x93\x02\x18:\x01**\x13/v1/delete/customer\x12|\n" +
+	"\x0eUpdateCustomer\x12$.helloworld.v1.UpdateCustomerRequest\x1a%.helloworld.v1.UpdateCustomerResponse\"\x1d\x82\xd3\xe4\x93\x02\x17:\x01*\x1a\x12v1/update/customerBS\n" +
 	"\x1cdev.kratos.api.helloworld.v1B\x11HelloworldProtoV1P\x01Z\x1ecustomer1/api/helloworld/v1;v1b\x06proto3"
 
 var (
@@ -339,20 +597,28 @@ func file_api_helloworld_v1_greeter_proto_rawDescGZIP() []byte {
 	return file_api_helloworld_v1_greeter_proto_rawDescData
 }
 
-var file_api_helloworld_v1_greeter_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_api_helloworld_v1_greeter_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_api_helloworld_v1_greeter_proto_goTypes = []any{
 	(*HelloRequest)(nil),           // 0: helloworld.v1.HelloRequest
 	(*HelloReply)(nil),             // 1: helloworld.v1.HelloReply
 	(*CreateCustomerRequest)(nil),  // 2: helloworld.v1.CreateCustomerRequest
 	(*CreateCustomerResponse)(nil), // 3: helloworld.v1.CreateCustomerResponse
+	(*DeleteCustomerRequest)(nil),  // 4: helloworld.v1.DeleteCustomerRequest
+	(*DeleteCustomerResponse)(nil), // 5: helloworld.v1.DeleteCustomerResponse
+	(*UpdateCustomerRequest)(nil),  // 6: helloworld.v1.UpdateCustomerRequest
+	(*UpdateCustomerResponse)(nil), // 7: helloworld.v1.UpdateCustomerResponse
 }
 var file_api_helloworld_v1_greeter_proto_depIdxs = []int32{
 	0, // 0: helloworld.v1.Greeter.SayHello:input_type -> helloworld.v1.HelloRequest
 	2, // 1: helloworld.v1.Greeter.CreateCustomer:input_type -> helloworld.v1.CreateCustomerRequest
-	1, // 2: helloworld.v1.Greeter.SayHello:output_type -> helloworld.v1.HelloReply
-	3, // 3: helloworld.v1.Greeter.CreateCustomer:output_type -> helloworld.v1.CreateCustomerResponse
-	2, // [2:4] is the sub-list for method output_type
-	0, // [0:2] is the sub-list for method input_type
+	4, // 2: helloworld.v1.Greeter.DeleteCustomer:input_type -> helloworld.v1.DeleteCustomerRequest
+	6, // 3: helloworld.v1.Greeter.UpdateCustomer:input_type -> helloworld.v1.UpdateCustomerRequest
+	1, // 4: helloworld.v1.Greeter.SayHello:output_type -> helloworld.v1.HelloReply
+	3, // 5: helloworld.v1.Greeter.CreateCustomer:output_type -> helloworld.v1.CreateCustomerResponse
+	5, // 6: helloworld.v1.Greeter.DeleteCustomer:output_type -> helloworld.v1.DeleteCustomerResponse
+	7, // 7: helloworld.v1.Greeter.UpdateCustomer:output_type -> helloworld.v1.UpdateCustomerResponse
+	4, // [4:8] is the sub-list for method output_type
+	0, // [0:4] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -369,7 +635,7 @@ func file_api_helloworld_v1_greeter_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_helloworld_v1_greeter_proto_rawDesc), len(file_api_helloworld_v1_greeter_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

@@ -48,10 +48,22 @@ func (r *CustomerRepo) FindByID(ctx context.Context, Id string) (*biz.Customer, 
 }
 
 
-func (r *CustomerRepo) ListByHello(context.Context, string) ([]*biz.Customer, error) {
-	return nil, nil
+func(r *CustomerRepo)Delete(ctx context.Context,Id string)(*biz.Customer,error){
+	var customer biz.Customer
+	result := r.table.WithContext(ctx).Where("id = ? ", Id).Delete(&biz.Customer{})
+	fmt.Println(result)
+
+	return &customer,nil
 }
 
-func (r *CustomerRepo) ListAll(context.Context) ([]*biz.Customer, error) {
-	return nil, nil
+
+func(r *CustomerRepo)Update(ctx context.Context,g *biz.Customer)(*biz.Customer,error){
+
+	result:=r.table.WithContext(ctx).Where("id=?",g.ID).Updates(biz.Customer{Name:g.Name,Phone: g.Phone,Email: g.Email,Address: g.Address})
+	 if result.Error != nil {
+		return nil, result.Error
+	}
+	fmt.Println(result)
+	return g,nil
 }
+

@@ -25,7 +25,21 @@ service Greeter {
   
     };
   }
+  rpc DeleteCustomer(DeleteCustomerRequest) returns (DeleteCustomerResponse){
+    option (google.api.http)={
+      delete:"/v1/delete/customer"
+      body:"*"
+
+    };
+  }
+  rpc UpdateCustomer(UpdateCustomerRequest) returns (UpdateCustomerResponse){
+    option (google.api.http)={
+      put:"v1/update/customer"
+      body:"*"
+    };
+  }
 }
+
 
 // The request message containing the user's name.
 message HelloRequest {
@@ -56,4 +70,29 @@ message CreateCustomerResponse{
   string email=3;
   string phone=4;
   string address=5;
+}
+
+message DeleteCustomerRequest{
+  string id=1;
+}
+
+message DeleteCustomerResponse{
+  string message=1;
+}
+
+
+message UpdateCustomerRequest{
+  string name=1;
+  string id=2;
+  string address=3;
+  string phone=4;
+  string email=5;
+}
+
+message UpdateCustomerResponse{
+  string name=1;
+  string id=2;
+  string address=3;
+  string phone=4;
+  string email=5;
 }

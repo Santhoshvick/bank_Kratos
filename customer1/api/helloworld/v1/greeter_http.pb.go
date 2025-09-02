@@ -20,18 +20,24 @@ var _ = binding.EncodeURL
 const _ = http.SupportPackageIsVersion1
 
 const OperationGreeterCreateCustomer = "/helloworld.v1.Greeter/CreateCustomer"
+const OperationGreeterDeleteCustomer = "/helloworld.v1.Greeter/DeleteCustomer"
 const OperationGreeterSayHello = "/helloworld.v1.Greeter/SayHello"
+const OperationGreeterUpdateCustomer = "/helloworld.v1.Greeter/UpdateCustomer"
 
 type GreeterHTTPServer interface {
 	CreateCustomer(context.Context, *CreateCustomerRequest) (*CreateCustomerResponse, error)
+	DeleteCustomer(context.Context, *DeleteCustomerRequest) (*DeleteCustomerResponse, error)
 	// SayHello Sends a greeting
 	SayHello(context.Context, *HelloRequest) (*HelloReply, error)
+	UpdateCustomer(context.Context, *UpdateCustomerRequest) (*UpdateCustomerResponse, error)
 }
 
 func RegisterGreeterHTTPServer(s *http.Server, srv GreeterHTTPServer) {
 	r := s.Route("/")
 	r.GET("/helloworld/get/{id}", _Greeter_SayHello0_HTTP_Handler(srv))
 	r.POST("/v1/create/customer", _Greeter_CreateCustomer0_HTTP_Handler(srv))
+	r.DELETE("/v1/delete/customer", _Greeter_DeleteCustomer0_HTTP_Handler(srv))
+	r.PUT("v1/update/customer", _Greeter_UpdateCustomer0_HTTP_Handler(srv))
 }
 
 func _Greeter_SayHello0_HTTP_Handler(srv GreeterHTTPServer) func(ctx http.Context) error {
@@ -78,9 +84,55 @@ func _Greeter_CreateCustomer0_HTTP_Handler(srv GreeterHTTPServer) func(ctx http.
 	}
 }
 
+func _Greeter_DeleteCustomer0_HTTP_Handler(srv GreeterHTTPServer) func(ctx http.Context) error {
+	return func(ctx http.Context) error {
+		var in DeleteCustomerRequest
+		if err := ctx.Bind(&in); err != nil {
+			return err
+		}
+		if err := ctx.BindQuery(&in); err != nil {
+			return err
+		}
+		http.SetOperation(ctx, OperationGreeterDeleteCustomer)
+		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
+			return srv.DeleteCustomer(ctx, req.(*DeleteCustomerRequest))
+		})
+		out, err := h(ctx, &in)
+		if err != nil {
+			return err
+		}
+		reply := out.(*DeleteCustomerResponse)
+		return ctx.Result(200, reply)
+	}
+}
+
+func _Greeter_UpdateCustomer0_HTTP_Handler(srv GreeterHTTPServer) func(ctx http.Context) error {
+	return func(ctx http.Context) error {
+		var in UpdateCustomerRequest
+		if err := ctx.Bind(&in); err != nil {
+			return err
+		}
+		if err := ctx.BindQuery(&in); err != nil {
+			return err
+		}
+		http.SetOperation(ctx, OperationGreeterUpdateCustomer)
+		h := ctx.Middleware(func(ctx context.Context, req interface{}) (interface{}, error) {
+			return srv.UpdateCustomer(ctx, req.(*UpdateCustomerRequest))
+		})
+		out, err := h(ctx, &in)
+		if err != nil {
+			return err
+		}
+		reply := out.(*UpdateCustomerResponse)
+		return ctx.Result(200, reply)
+	}
+}
+
 type GreeterHTTPClient interface {
 	CreateCustomer(ctx context.Context, req *CreateCustomerRequest, opts ...http.CallOption) (rsp *CreateCustomerResponse, err error)
+	DeleteCustomer(ctx context.Context, req *DeleteCustomerRequest, opts ...http.CallOption) (rsp *DeleteCustomerResponse, err error)
 	SayHello(ctx context.Context, req *HelloRequest, opts ...http.CallOption) (rsp *HelloReply, err error)
+	UpdateCustomer(ctx context.Context, req *UpdateCustomerRequest, opts ...http.CallOption) (rsp *UpdateCustomerResponse, err error)
 }
 
 type GreeterHTTPClientImpl struct {
@@ -104,6 +156,19 @@ func (c *GreeterHTTPClientImpl) CreateCustomer(ctx context.Context, in *CreateCu
 	return &out, nil
 }
 
+func (c *GreeterHTTPClientImpl) DeleteCustomer(ctx context.Context, in *DeleteCustomerRequest, opts ...http.CallOption) (*DeleteCustomerResponse, error) {
+	var out DeleteCustomerResponse
+	pattern := "/v1/delete/customer"
+	path := binding.EncodeURL(pattern, in, false)
+	opts = append(opts, http.Operation(OperationGreeterDeleteCustomer))
+	opts = append(opts, http.PathTemplate(pattern))
+	err := c.cc.Invoke(ctx, "DELETE", path, in, &out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
 func (c *GreeterHTTPClientImpl) SayHello(ctx context.Context, in *HelloRequest, opts ...http.CallOption) (*HelloReply, error) {
 	var out HelloReply
 	pattern := "/helloworld/get/{id}"
@@ -111,6 +176,19 @@ func (c *GreeterHTTPClientImpl) SayHello(ctx context.Context, in *HelloRequest, 
 	opts = append(opts, http.Operation(OperationGreeterSayHello))
 	opts = append(opts, http.PathTemplate(pattern))
 	err := c.cc.Invoke(ctx, "GET", path, nil, &out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return &out, nil
+}
+
+func (c *GreeterHTTPClientImpl) UpdateCustomer(ctx context.Context, in *UpdateCustomerRequest, opts ...http.CallOption) (*UpdateCustomerResponse, error) {
+	var out UpdateCustomerResponse
+	pattern := "v1/update/customer"
+	path := binding.EncodeURL(pattern, in, false)
+	opts = append(opts, http.Operation(OperationGreeterUpdateCustomer))
+	opts = append(opts, http.PathTemplate(pattern))
+	err := c.cc.Invoke(ctx, "PUT", path, in, &out, opts...)
 	if err != nil {
 		return nil, err
 	}

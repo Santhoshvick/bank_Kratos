@@ -58,3 +58,35 @@ func(s * CustomerService)CreateCustomer(ctx context.Context,in *v1.CreateCustome
 		Phone: g.Phone,
 	},err
 }
+
+func(s *CustomerService)DeleteCustomer(ctx context.Context,in *v1.DeleteCustomerRequest)(*v1.DeleteCustomerResponse,error){
+	_,err:=s.uc.DelCustomer(ctx,in.Id)
+	if err!=nil{
+		return nil,err
+	}
+	return &v1.DeleteCustomerResponse{
+		Message: "The customer for the mentioned customer id is deleted successfully",
+	},err
+}
+
+
+func(s *CustomerService)UpdateCustomer(ctx context.Context,in *v1.UpdateCustomerRequest)(*v1.UpdateCustomerResponse,error){
+	g,err:=s.uc.UpdCustomer(ctx, &biz.Customer{
+		ID: in.Id,
+		Name: in.Name,
+		Email: in.Email,
+		Phone: in.Phone,
+		Address: in.Address,
+	})
+	if err!=nil{
+		return nil,err
+	}
+
+	return &v1.UpdateCustomerResponse{
+		Id: g.ID,
+		Name:g.Name,
+		Address:g.Address,
+		Email:g.Email,
+		Phone:g.Phone,
+	},err
+}

@@ -56,6 +56,54 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/Status'
+    /v1/delete/customer:
+        delete:
+            tags:
+                - Greeter
+            operationId: Greeter_DeleteCustomer
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/DeleteCustomerRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/DeleteCustomerResponse'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+    v1/update/customer:
+        put:
+            tags:
+                - Greeter
+            operationId: Greeter_UpdateCustomer
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/UpdateCustomerRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/UpdateCustomerResponse'
+                default:
+                    description: Default error response
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
 components:
     schemas:
         CreateCustomerRequest:
@@ -83,6 +131,16 @@ components:
                 phone:
                     type: string
                 address:
+                    type: string
+        DeleteCustomerRequest:
+            type: object
+            properties:
+                id:
+                    type: string
+        DeleteCustomerResponse:
+            type: object
+            properties:
+                message:
                     type: string
         GoogleProtobufAny:
             type: object
@@ -122,5 +180,31 @@ components:
                         $ref: '#/components/schemas/GoogleProtobufAny'
                     description: A list of messages that carry the error details.  There is a common set of message types for APIs to use.
             description: 'The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).'
+        UpdateCustomerRequest:
+            type: object
+            properties:
+                name:
+                    type: string
+                id:
+                    type: string
+                address:
+                    type: string
+                phone:
+                    type: string
+                email:
+                    type: string
+        UpdateCustomerResponse:
+            type: object
+            properties:
+                name:
+                    type: string
+                id:
+                    type: string
+                address:
+                    type: string
+                phone:
+                    type: string
+                email:
+                    type: string
 tags:
     - name: Greeter

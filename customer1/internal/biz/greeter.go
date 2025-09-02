@@ -16,12 +16,11 @@ var (
 
 // Greeter is a Greeter model.
 type Customer struct {
-	Name string
-	ID string
-	Email string
-	Phone string
+	Name    string
+	ID      string
+	Email   string
+	Phone   string
 	Address string
-
 }
 
 // GreeterRepo is a Greater repo.
@@ -29,8 +28,8 @@ type GreeterRepo interface {
 	Create(context.Context, *Customer) (*Customer, error)
 	Fetch(context.Context, *Customer) (*Customer, error)
 	FindByID(context.Context, string) (*Customer, error)
-	ListByHello(context.Context, string) ([]*Customer, error)
-	ListAll(context.Context) ([]*Customer, error)
+	Delete(context.Context, string) (*Customer, error)
+	Update(context.Context,*Customer)(*Customer, error)
 }
 
 // GreeterUsecase is a Greeter usecase.
@@ -50,12 +49,18 @@ func NewGreeterUsecase(repo GreeterRepo, logger log.Logger) *CustomerUsecase {
 // 	return uc.repo.Fetch(ctx, g)
 // }
 
-func(uc *CustomerUsecase)CreateCustomer(ctx context.Context,g *Customer)(*Customer,error){
-	return uc.repo.Create(ctx,g)
+func (uc *CustomerUsecase) CreateCustomer(ctx context.Context, g *Customer) (*Customer, error) {
+	return uc.repo.Create(ctx, g)
 }
 
-func(uc *CustomerUsecase)CreateGreeter(ctx context.Context,Id string)(*Customer,error){
-	return uc.repo.FindByID(ctx,Id)
+func (uc *CustomerUsecase) CreateGreeter(ctx context.Context, Id string) (*Customer, error) {
+	return uc.repo.FindByID(ctx, Id)
 }
 
+func (uc *CustomerUsecase) DelCustomer(ctx context.Context, Id string) (*Customer, error) {
+	return uc.repo.Delete(ctx,Id)
+}
 
+func(uc *CustomerUsecase)UpdCustomer(ctx context.Context,g *Customer)(*Customer,error){
+	return uc.repo.Update(ctx,g)
+}
