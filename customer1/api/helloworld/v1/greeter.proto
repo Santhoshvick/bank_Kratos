@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package helloworld.v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "customer1/api/helloworld/v1;v1";
+option java_multiple_files = true;
+option java_package = "dev.kratos.api.helloworld.v1";
+option java_outer_classname = "HelloworldProtoV1";
+
+// The greeting service definition.
+service Greeter {
+  // Sends a greeting
+  rpc SayHello (HelloRequest) returns (HelloReply) {
+    option (google.api.http) = {
+      get: "/helloworld/get/{id}"
+    };
+  }
+
+  rpc CreateCustomer(CreateCustomerRequest) returns (CreateCustomerResponse){
+    option (google.api.http)={
+      post: "/v1/create/customer"
+      body:"*"
+  
+    };
+  }
+}
+
+// The request message containing the user's name.
+message HelloRequest {
+  string id=1;
+}
+
+// The response message containing the greetings
+message HelloReply {
+ string id=1;
+  string name=2;
+  string email=3;
+  string phone=4;
+  string address=5;
+}
+
+
+message CreateCustomerRequest{
+  string id=1;
+  string name=2;
+  string email=3;
+  string phone=4;
+  string address=5;
+}
+
+message CreateCustomerResponse{
+  string id=1;
+  string name=2;
+  string email=3;
+  string phone=4;
+  string address=5;
+}
