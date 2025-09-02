@@ -1,0 +1,33 @@
+.card-explore{
+    color: goldenrod;
+    font-size: 30px;
+}
+
+
+.card-explore:hover{
+    color: crimson;
+}
+.cards-type{
+    width: 200px;
+    display: inline-block;
+    margin-left: 80px;
+}
+.cards-type:hover{
+    background-color: rgb(215, 54, 54);
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 3px 2px 2px red;
+    
+}
+
+label,input{
+    margin-left: 30px;
+    margin-bottom: 20px;
+}
+.display-card{
+    width: 500px;
+    height: 300px;
+    border: 1px solid black;
+    border-radius: 20px;
+    margin-top:100px;
+    margin-left: 100px;
+}

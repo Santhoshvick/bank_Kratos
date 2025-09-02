@@ -1,0 +1,120 @@
+h1{
+  color: black;
+  font-size: 50px;
+}
+
+form{
+  display: inline-block;
+  margin-left: 40px;
+  font-size: 20px;
+}
+
+form input{
+border-top: none;
+border-left: none;
+border-right: none;
+width: 300px;
+margin-top: 20px;
+}
+
+.form-details{
+  margin-left: 25%;
+  margin-top: 5%;
+}
+button{
+  margin-left: 680px;
+  margin-top: 10px;
+  width: 100px;
+  height: 30px;
+  background-color: black;
+  color: white;
+  font-size: 20px;
+  display: inline-block;
+}
+
+nav{
+  color: black; 
+  font-size: 10px;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #fff;
+}
+
+.logo {
+  width: 150px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links a {
+  color:black;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+.link:hover{
+border-bottom: 2px solid black;
+}
+
+
+/* footer */
+.footer {
+  background-color: #020202;
+  color: #ffffff;
+  padding: 40px 20px;
+  font-family: Arial, sans-serif;
+  margin-top: 20px;
+  height: 250px;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.footer-section {
+  flex: 1 1 220px;
+  margin-bottom: 20px;
+}
+
+.footer-section h4,
+.footer-section h3 {
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+.footer-section p,
+.footer-section a {
+  color: #ccc;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.footer-section a:hover {
+  color: #ffffff;
+}
+
+.social-links a {
+  margin-right: 15px;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #444;
+  font-size: 13px;
+  color: #aaa;
+}
+
